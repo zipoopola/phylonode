@@ -91,11 +91,11 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Full-width header */}
-      <header className="w-full bg-white shadow-md py-4 px-8">
+      <header className="w-full bg-white shadow-md py-3 px-8">
         <h1 className="text-2xl font-bold text-gray-800">Phylogeny Visualiser</h1>
       </header>
 
-      <svg width="100%" height="100%">
+      <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>
         <defs>
           <clipPath id="roundedClip">
             <rect x="-60" y="-37.5" width="120" height="75" rx="10" ry="10" />
@@ -103,7 +103,6 @@ function App() {
         </defs>
       </svg>
 
-      {/* Scrollable main area */}
       <main className="flex-grow overflow-auto bg-gray-100 p-8">
         <div className="bg-white rounded-xl shadow-xl p-6 w-full min-w-[800px] min-h-[600px] overflow-auto">
           <div className="w-full h-[80vh] overflow-auto">
