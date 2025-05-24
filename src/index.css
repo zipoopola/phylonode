@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.rd3t-link {
+  stroke: #4B5563 !important;
+  stroke-width: 2px !important;
+}

@@ -1,0 +1,19 @@
+      \\name from when i used SVG for text but it wouldnt stop being bold
+      
+      {/* Name above*/}
+      <text
+        fill = "#111827"
+        x="0" y="-35" textAnchor="middle" fontSize="14" fontWeight="100"
+        >
+        {nodeDatum.name}
+      </text>
+
+
+
+
+          {/*Node age below*/}
+    {nodeDatum.age && (
+      <text fill="#6b7280" x="0" y="45" textAnchor="middle" fontSize="12" fontWeight="300">
+        {nodeDatum.age} MYA
+      </text>
+    )}
