@@ -151,7 +151,7 @@ return (
           zoomable
           collapsible
           translate={{ x: 500, y: 100 }}
-          separation={{ siblings: 1, nonSiblings: 1.75 }}
+          separation={{ siblings: 1, nonSiblings: 1.6 }}
           nodeSize={{ x: 200, y: 120 }}
           renderCustomNodeElement={renderCustomNode(setInfoNode)}
           pathFunc="straight"
@@ -159,26 +159,59 @@ return (
         </div>
       </div>
 
-      {/* Sidebar */}
-        {infoNode && (
-          <div className="fixed right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50">
+      {infoNode && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setInfoNode(null)}
+        >
+          {/*above sets an overlay, that when clicked, closes any sidebar*/}
+          {/* Sidebar panel charactersitics, when clicked inside, it doesn't propagate to outside code (hence doesnt close)*/}
+          <div
+            className="absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50"
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside the panel
+          >
+
+            {/*close button optional*/}
             <button
-                  className="text-sm text-gray-500 hover:text-gray-800 mb-4"
-                  onClick={() => setInfoNode(null)}
-                >
-                  Close
-                </button>
-                <h2 className="text-lg font-semibold mb-2">{infoNode.name}</h2>
-                {infoNode.age && <p className="text-sm text-gray-600 mb-1">Age: {infoNode.age} MYA</p>}
-                {/* Add more info fields as needed */}
+              className="text-sm text-gray-500 hover:text-gray-800 mb-4"
+              onClick={() => setInfoNode(null)}
+            >
+              Close
+            </button>
+
+            {/*node name, image, age are in side bar */}
+            <h2 className="text-lg font-semibold mb-2">{infoNode.name}</h2>
+
+            {infoNode.image && (
+              <img
+                src={`/${infoNode.image}`}
+                alt={infoNode.name}
+                className="w-full rounded-md mb-4 border border-gray-300"
+                style={{ maxHeight: '200px', objectFit: 'cover' }}
+              />
+            )}
+
+            {infoNode.age && (
+              <p className="text-sm text-gray-600 mb-1">
+                Age: {infoNode.age} MYA
+              </p>
+            )}
           </div>
-        )}
+        </div>
+      )}
 
 
     </main>
   </div>
   );
 }
+
+
+
+
+
+
+
 
 
 export default App;
