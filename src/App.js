@@ -21,7 +21,7 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? toggleNode : null}>
       {/* Name above */}
-      <foreignObject x="-60" y="-57.5" width="120" height="20">
+      <foreignObject x="-60" y="-56" width="120" height="20">
         <div
           xmlns="http://www.w3.org/1999/xhtml"
           style={{
@@ -64,7 +64,7 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
 
       {/* Age below */}
       {nodeDatum.age && (
-        <foreignObject x="-60" y="40" width="120" height="20">
+        <foreignObject x="-60" y="38" width="120" height="20">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{
@@ -80,19 +80,36 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
         </foreignObject>
       )}
 
-      {/* Collapse/expand symbol */}
+      {/* Collapse/expand chevron symbol */}
       {hasChildren && (
-        <text
-          x="60"
-          y="-37.5"
-          textAnchor="middle"
-          fontSize="18"
-          fill="#374151"
-          fontWeight="10"
-          pointerEvents="none"
+        <g
+          transform="translate(60, -37.5)"
+          style={{ cursor: 'pointer' }}
+          onClick={(e) => {
+            e.stopPropagation(); // prevent triggering node click
+            toggleNode();        // toggle expand/collapse
+          }}
         >
-          {isCollapsed ? '+' : '−'}
-        </text>
+          {isCollapsed ? (
+            <polyline
+              points="2,3.5 6,0 10,3.5"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          ) : (
+            <polyline
+              points="2,3.5 6,8 10,3.5"
+              fill="none"
+              stroke="#374151"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          )}
+        </g>
       )}
 
       {/* (i) icon */}
@@ -108,7 +125,8 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{
-              fontSize: '10px',
+              fontFamily: 'vivaldi',
+              fontSize: '18px',
               textAlign: 'center',
               color: '#374151',
               fontWeight: 700,
@@ -172,9 +190,16 @@ return (
           collapsible
           translate={{ x: 500, y: 100 }}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
-          nodeSize={{ x: 200, y: 120 }}
+          nodeSize={{ x: 200, y: 145 }}
           renderCustomNodeElement={renderCustomNode(setInfoNode)}
-          pathFunc="straight"
+          
+          pathFunc={(linkData) => {
+          const offsetY = 55; // Adjust this if your node has a taller label or extra info
+          const source = { ...linkData.source, y: linkData.source.y + offsetY };
+          const target = { ...linkData.target, y: linkData.target.y - offsetY };
+
+          return `M${source.x},${source.y}V${(source.y + target.y) / 2}H${target.x}V${target.y}`;
+        }}
         />
         </div>
       </div>
