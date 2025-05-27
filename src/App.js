@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
+import ReactMarkdown from 'react-markdown';
+
 //import PhyloNode from './PhyloNode';
 
 const treeData = [buildTree(data)];   //define data
@@ -126,6 +128,24 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
 
 function App() {
   const [infoNode, setInfoNode] = useState(null);
+  const [infoText, setInfoText] = useState('');
+
+useEffect(() => {
+  if (infoNode && infoNode.info) {
+    fetch(infoNode.info)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.text();
+      })
+      .then((text) => setInfoText(text))
+      .catch((err) => {
+        console.error("Failed to load info text:", err);
+        setInfoText('Failed to load info.');
+      });
+  } else {
+    setInfoText('');
+  }
+}, [infoNode]);
 
 return (
   <div className="min-h-screen flex flex-col">
@@ -158,6 +178,7 @@ return (
         />
         </div>
       </div>
+
 
       {infoNode && (
         <div
@@ -196,11 +217,16 @@ return (
                 Age: {infoNode.age} MYA
               </p>
             )}
+
+            <div className="text-sm mt-4 whitespace-pre-wrap">
+              <ReactMarkdown>
+                {infoText}
+              </ReactMarkdown>
+            </div>
+              
           </div>
         </div>
       )}
-
-
     </main>
   </div>
   );
