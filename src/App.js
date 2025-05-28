@@ -3,6 +3,9 @@ import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';       // GitHub Flavored Markdown (for lists, tables, etc.)
+import remarkBreaks from 'remark-breaks'; // For line breaks with single newlines
+
 
 //import PhyloNode from './PhyloNode';
 
@@ -18,10 +21,13 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
   const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
   const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
 
+const nameY = nodeDatum.image ? -56 : -20;
+const ageY = nodeDatum.image ? 38 : 0;
+
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? toggleNode : null}>
       {/* Name above */}
-      <foreignObject x="-60" y="-56" width="120" height="20">
+      <foreignObject x="-60" y={nameY} width="120" height="20">
         <div
           xmlns="http://www.w3.org/1999/xhtml"
           style={{
@@ -36,8 +42,8 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
         </div>
       </foreignObject>
 
-      {/* Image or fallback */}
-      {nodeDatum.image ? (
+      {/* Image*/}
+      {nodeDatum.image && (
         <image
           href={`/${nodeDatum.image}`}
           x="-60"
@@ -49,22 +55,11 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
           preserveAspectRatio="xMidYMid slice"
           clipPath="url(#roundedClip)"
         />
-      ) : (
-        <rect
-          width="120"
-          height="75"
-          x="-60"
-          y="-37.5"
-          fill="#f3f4f6"
-          stroke="#9ca3af"
-          rx="10"
-          ry="10"
-        />
       )}
 
       {/* Age below */}
       {nodeDatum.age && (
-        <foreignObject x="-60" y="38" width="120" height="20">
+        <foreignObject x="-60" y={ageY} width="120" height="20">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{
@@ -243,11 +238,13 @@ return (
               </p>
             )}
 
-            <div className="text-sm mt-4 whitespace-pre-wrap">
-              <ReactMarkdown>
-                {infoText}
-              </ReactMarkdown>
-            </div>
+          <div className="prose text-sm mt-4">
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm, remarkBreaks]}
+            >
+              {infoText}
+            </ReactMarkdown>
+          </div>
               
           </div>
         </div>
