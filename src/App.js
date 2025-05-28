@@ -115,8 +115,8 @@ const ageY = nodeDatum.image ? 38 : 0;
         }}
         style={{ cursor: 'pointer' }}
       >
-        <circle cx="-58" cy="-37.5" r="10" fill="#e5e7eb" stroke="#9ca3af" />
-        <foreignObject x="-63" y="-42.5" width="10" height="10">
+        <circle cx="-60" cy="-27.5" r="10" fill="#e5e7eb" stroke="#9ca3af" />
+        <foreignObject x="-65" y="-32.5" width="10" height="10">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{

@@ -2,11 +2,11 @@
 const flatData = [
   { name: 'Life', parent: null, age: 4000, image: 'images/monkey.png', info: '' },
   { name: 'Animals', parent: 'Life', age: 650, image: 'images/animal.png', info:'info/animal.md' },
-  { name: 'Sponge', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/Sponge.md' },
+  { name: 'Porifera / Sponges', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/Sponge.md' },
 
   { name: 'Eumetazoa', parent: 'Animals', age:600, image: '', info:'' },
-  { name: 'Ctenophora', parent: 'Eumetazoa', age: 544, image: 'images/Ctenophora.png', info:'' },
-
+  { name: 'Ctenophora', parent: 'Eumetazoa', age: 544, image: 'images/ctenophora.png', info:'' },
+  { name: 'Placozoa', parent: 'Eumetazoa', age: 550, image: 'images/placozoa.png', info:'' },
 
 
 
