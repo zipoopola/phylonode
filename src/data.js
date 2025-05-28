@@ -6,15 +6,15 @@ const flatData = [
 
   { name: 'Eumetazoa', parent: 'Animals', age:600, image: '', info:'' },
   { name: 'Ctenophora', parent: 'Eumetazoa', age: 544, image: 'images/ctenophora.png', info:'' },
-  { name: 'Placozoa', parent: 'Eumetazoa', age: 550, image: 'images/placozoa.png', info:'info/placozoa.md' },
   
   { name: 'ParaHoxozoa', parent: 'Eumetazoa', age: 0, image: '', info:'' },
+    { name: 'Placozoa', parent: 'ParaHoxozoa', age: 550, image: 'images/placozoa.png', info:'info/placozoa.md' },
     { name: 'Cnidaria', parent: 'ParaHoxozoa', age: 0, image: '', info:'' },
         { name: 'Anthozoa', parent: 'Cnidaria', age: 0, image: '', info:'' },
             { name: 'Hexacorallia', parent: 'Anthozoa', age: 0, image: '', info:'' },
                 { name: 'Sea Anenomes', parent: 'Hexacorallia', age: 0, image: '', info:'' },
                 { name: 'Stony Corals', parent: 'Hexacorallia', age: 0, image: '', info:'' },
-            { name: 'Soft Corals', parent: 'Anthozoa', age: 0, image: '', info:'' },
+            { name: 'Soft Corals', parent: 'Anthozoa', age: 0, image: 'images/sea_pen.png', info:'' },
         { name: 'Medusozoa', parent: 'Cnidaria', age: 0, image: '', info:'' },
 
 
