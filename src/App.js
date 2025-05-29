@@ -21,8 +21,13 @@ const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
   const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
   const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
 
+  //if no image present change coords
 const nameY = nodeDatum.image ? -56 : -20;
 const ageY = nodeDatum.image ? 38 : 0;
+const infoiY = nodeDatum.image? -32.5: -12.5;
+const infoCircY = nodeDatum.image? -27.5: -7.5;
+const chevY = nodeDatum.image? -37.5: -17.5;
+
 
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? toggleNode : null}>
@@ -115,8 +120,8 @@ const ageY = nodeDatum.image ? 38 : 0;
         }}
         style={{ cursor: 'pointer' }}
       >
-        <circle cx="-60" cy="-27.5" r="10" fill="#e5e7eb" stroke="#9ca3af" />
-        <foreignObject x="-65" y="-32.5" width="10" height="10">
+        <circle cx="-60" cy={infoCircY} r="10" fill="#e5e7eb" stroke="#9ca3af" />
+        <foreignObject x="-65" y={infoiY} width="10" height="10">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{
