@@ -1,1 +1,0 @@
-The Sponge has a probable range of the Ediacran, 635MYA. Especially if Otavia is to be believed.

@@ -5,6 +5,7 @@ import buildTree from './buildTree';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';       // GitHub Flavored Markdown (for lists, tables, etc.)
 import remarkBreaks from 'remark-breaks'; // For line breaks with single newlines
+import { infoNodes } from './infoList';
 
 
 //import PhyloNode from './PhyloNode';
@@ -112,7 +113,8 @@ const chevY = nodeDatum.image? -37.5: -17.5;
         </g>
       )}
 
-      {/* (i) icon */}
+      {/* (i) icon which only appears on nodes that have info, which is updated by: npm run infoList*/}
+      {infoNodes.has(nodeDatum.name.toLowerCase()) && (
       <g
         onClick={(e) => {
           e.stopPropagation();
@@ -138,6 +140,7 @@ const chevY = nodeDatum.image? -37.5: -17.5;
           </div>
         </foreignObject>
       </g>
+      )}
     </g>
   );
 };

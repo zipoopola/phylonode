@@ -1,0 +1,3 @@
+The image shows a reconstruction of the oldest known bilaterian fossil, Kimberella. It was thought that Kimberella lived similarly to gastropods. 
+
+The first bilaterian must have been slightly older than this creature, and very small (<1cm), it had a simple brain and eyes, but no other true organs. The first bilaterian would have been mobile and had a simple gut, with only one opening. It is likely that soon after Acoelomorpha split off, the common ancestor of the rest of the group was segmented, with a heart, and a through gut.
