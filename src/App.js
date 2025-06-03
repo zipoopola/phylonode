@@ -8,7 +8,6 @@ import remarkBreaks from 'remark-breaks'; // For line breaks with single newline
 import { infoNodes } from './infoList';
 
 
-//import PhyloNode from './PhyloNode';
 
 const treeData = [buildTree(data)];   //define data
 
@@ -261,13 +260,6 @@ return (
   </div>
   );
 }
-
-
-
-
-
-
-
 
 
 export default App;
