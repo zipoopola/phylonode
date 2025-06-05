@@ -1,0 +1,1 @@
+The ambulacrarian ancestor, theorised here as Dipleurula, likely had a sense organ, a through gut, and ciliary bands for rudimentary locomotion.
