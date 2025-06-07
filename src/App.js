@@ -26,7 +26,10 @@ const nameY = nodeDatum.image ? -56 : -20;
 const ageY = nodeDatum.image ? 38 : 0;
 const infoiY = nodeDatum.image? -32.5: -12.5;
 const infoCircY = nodeDatum.image? -27.5: -7.5;
-const chevY = nodeDatum.image? -37.5: -17.5;
+
+const chevY = nodeDatum.image? 0: 21;
+//const chevX = nodeDatum.image? 0 : 0; unused
+
 
 
   return (
@@ -83,7 +86,6 @@ const chevY = nodeDatum.image? -37.5: -17.5;
       {/* Collapse/expand chevron symbol */}
       {hasChildren && (
         <g
-          transform="translate(60, -37.5)"
           style={{ cursor: 'pointer' }}
           onClick={(e) => {
             e.stopPropagation(); // prevent triggering node click
@@ -92,21 +94,25 @@ const chevY = nodeDatum.image? -37.5: -17.5;
         >
           {isCollapsed ? (
             <polyline
-              points="2,3.5 6,0 10,3.5"
+              points="62,-34 66,-37.5 70,-34"
               fill="none"
               stroke="#374151"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              transform={`translate(0, ${chevY})`}
+
             />
           ) : (
             <polyline
-              points="2,3.5 6,8 10,3.5"
+              points="62,-34 66,-29.5 70,-34"
               fill="none"
               stroke="#374151"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
+              transform={`translate(0, ${chevY})`}
+
             />
           )}
         </g>
