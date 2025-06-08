@@ -3,9 +3,10 @@ export const infoNodes = new Set([
   "ambulacraria",
   "animals",
   "bilateria",
+  "echinodermata",
   "hemichordata",
   "monkey",
   "placozoa",
   "porifera",
-  "xenoacoellamorpha"
+  "xenacoelomorpha"
 ]);

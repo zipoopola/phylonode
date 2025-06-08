@@ -20,12 +20,13 @@ const flatData = [
     { name: 'Bilateria', parent: 'Symmetry', age: 570, image: 'images/bilateria.png', info:'info/bilateria.md' },
         { name: 'Deuterostomia', parent: 'Bilateria', age: 0, image: '', info:''  },
             { name: 'Xenambulacraria', parent: 'Deuterostomia', age: 0, image: '', info:''  },
-                { name: 'Xenacoelomorpha', parent: 'Xenambulacraria', age: 0, image: '', info:''  },
-                    { name: 'Xenoturbella', parent: 'Xenacoelomorpha', age: 0, image: 'images/xenoturbell.png', info:''  },
+                { name: 'Xenacoelomorpha', parent: 'Xenambulacraria', age: 0, image: 'images/xenoturbell.png', info:'info/xenacoelomorpha.md'  },
+                    //{ name: 'Xenoturbella', parent: 'Xenacoelomorpha', age: 0, image: 'images/xenoturbell.png', info:''  },                      unnecessary, now within parent group
                 { name: 'Ambulacraria', parent: 'Xenambulacraria', age: 533, image: 'images/ambulacraria.png', info:'info/ambulacraria.md'},
                     { name: 'Hemichordata', parent: 'Ambulacraria', age: 0, image: 'images/pterobranch.png', info:'info/hemichordata.md'  },
-                    { name: 'Echinodermata', parent: 'Ambulacraria', age: 0, image: 'images/.png', info:''  },
+                    { name: 'Echinodermata', parent: 'Ambulacraria', age: 515, image: 'images/echinodermata.png', info:'info/echinodermata.md'  },
                         { name: 'Crinoidea', parent: 'Echinodermata', age: 487, image: 'images/crinoidea.png', info:''  },
+            { name: 'Chordata', parent: 'Deuterostomia', age: 0, image: '', info:''  },
 
 
 
