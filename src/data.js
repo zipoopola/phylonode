@@ -22,11 +22,10 @@ const flatData = [
             { name: 'Xenambulacraria', parent: 'Deuterostomia', age: 0, image: '', info:''  },
                 { name: 'Xenacoelomorpha', parent: 'Xenambulacraria', age: 0, image: '', info:''  },
                     { name: 'Xenoturbella', parent: 'Xenacoelomorpha', age: 0, image: 'images/xenoturbell.png', info:''  },
-                { name: 'Ambulacraria', parent: 'Xenambulacraria', age: 533, image: 'images/ambulacraria.png', info:'info/ambulacraria,md'},
+                { name: 'Ambulacraria', parent: 'Xenambulacraria', age: 533, image: 'images/ambulacraria.png', info:'info/ambulacraria.md'},
+                    { name: 'Hemichordata', parent: 'Ambulacraria', age: 0, image: 'images/pterobranch.png', info:'info/hemichordata.md'  },
                     { name: 'Echinodermata', parent: 'Ambulacraria', age: 0, image: 'images/.png', info:''  },
-                    { name: 'Hemichordata', parent: 'Ambulacraria', age: 0, image: 'images/pterobranch.png', info:''  },
-
-
+                        { name: 'Crinoidea', parent: 'Echinodermata', age: 487, image: 'images/crinoidea.png', info:''  },
 
 
 
