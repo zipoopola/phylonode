@@ -26,6 +26,7 @@ const flatData = [
                     { name: 'Hemichordata', parent: 'Ambulacraria', age: 0, image: 'images/pterobranch.png', info:'info/hemichordata.md'  },
                     { name: 'Echinodermata', parent: 'Ambulacraria', age: 515, image: 'images/echinodermata.png', info:'info/echinodermata.md'  },
                         { name: 'Crinoidea', parent: 'Echinodermata', age: 487, image: 'images/crinoidea.png', info:''  },
+                        { name: 'Eleutherozoa', parent: 'Echinodermata', age: 0, image: '', info:''  },
             { name: 'Chordata', parent: 'Deuterostomia', age: 0, image: '', info:''  },
 
 
