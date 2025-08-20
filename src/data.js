@@ -1,7 +1,7 @@
 // src/data.js
 const flatData = [
-  { name: 'Life', parent: null, age: 4000, image: 'images/monkey.png', info: '' },
-  { name: 'Animals', parent: 'Life', age: 650, image: 'images/animal.png', info:'info/animals.md' },
+  { name: 'Life (placeholder)', parent: null, age: 4000, image: 'images/monkey.png', info: '' },
+  { name: 'Animals', parent: 'Life (placeholder)', age: 650, image: 'images/animal.png', info:'info/animals.md' },
   { name: 'Porifera', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/porifera.md' },
 
   { name: 'Eumetazoa', parent: 'Animals', age:600, image: '', info:'' },
@@ -40,8 +40,9 @@ const flatData = [
 
 
 
-  { name: 'Plants', parent: 'Life', age: 1000, image: 'images/monkey.png', info:'info/monkey.md' },
-  { name: 'Orchid', parent: 'Plants', age: 100, image: 'images/monkey.png', info:''},
+  { name: 'Plants (placeholder)', parent: 'Life (placeholder)', age: 1000, image: 'images/monkey.png', info:'info/monkey.md' },
+  { name: 'Orchid (placeholder)', parent: 'Plants (placeholder)', age: 100, image: 'images/monkey.png', info:''},
+
 
 ];
 
