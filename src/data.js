@@ -41,7 +41,7 @@ const flatData = [
 
 
   { name: 'Plants (placeholder)', parent: 'Life (placeholder)', age: 1000, image: 'images/plant.png', info:'info/monkey.md' },
-  { name: 'Orchid', parent: 'Plants (placeholder)', age: 100, image: 'images/Orchid.png', info:''},
+  { name: 'Orchid', parent: 'Plants (placeholder)', age: 80, image: 'images/Orchid.png', info:''},
 
 
 ];
