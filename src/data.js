@@ -1,6 +1,6 @@
 // src/data.js
 const flatData = [
-  { name: 'Life (placeholder)', parent: null, age: 4000, image: 'images/monkey.png', info: '' },
+  { name: 'Life (placeholder)', parent: null, age: 4000, image: 'images/DNA.png', info: '' },
   { name: 'Animals', parent: 'Life (placeholder)', age: 650, image: 'images/animal.png', info:'info/animals.md' },
   { name: 'Porifera', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/porifera.md' },
 
@@ -40,8 +40,8 @@ const flatData = [
 
 
 
-  { name: 'Plants (placeholder)', parent: 'Life (placeholder)', age: 1000, image: 'images/monkey.png', info:'info/monkey.md' },
-  { name: 'Orchid (placeholder)', parent: 'Plants (placeholder)', age: 100, image: 'images/monkey.png', info:''},
+  { name: 'Plants (placeholder)', parent: 'Life (placeholder)', age: 1000, image: 'images/plant.png', info:'info/monkey.md' },
+  { name: 'Orchid', parent: 'Plants (placeholder)', age: 100, image: 'images/Orchid.png', info:''},
 
 
 ];
