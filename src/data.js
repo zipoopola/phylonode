@@ -2,10 +2,10 @@
 const flatData = [
   { name: 'Life (placeholder)', parent: null, age: 4000, image: 'images/DNA.png', info: '' },
   { name: 'Animals', parent: 'Life (placeholder)', age: 650, image: 'images/animal.png', info:'info/animals.md' },
-  { name: 'Porifera', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/porifera.md' },
+  { name: 'Sponges', parent: 'Animals', age: 544, image: 'images/sponge.png', info:'info/porifera.md' },
 
   { name: 'Eumetazoa', parent: 'Animals', age:600, image: '', info:'' },
-  { name: 'Ctenophora', parent: 'Eumetazoa', age: 544, image: 'images/ctenophora.png', info:'' },
+  { name: 'Comb jellies', parent: 'Eumetazoa', age: 544, image: 'images/ctenophora.png', info:'' },
   
   { name: 'ParaHoxozoa', parent: 'Eumetazoa', age: 0, image: '', info:'' },
     { name: 'Placozoa', parent: 'ParaHoxozoa', age: 550, image: 'images/placozoa.png', info:'info/placozoa.md' },
@@ -27,6 +27,12 @@ const flatData = [
                     { name: 'Echinodermata', parent: 'Ambulacraria', age: 515, image: 'images/echinodermata.png', info:'info/echinodermata.md'  },
                         { name: 'Crinoidea', parent: 'Echinodermata', age: 487, image: 'images/crinoidea.png', info:''  },
                         { name: 'Eleutherozoa', parent: 'Echinodermata', age: 0, image: '', info:''  },
+                            { name: 'Echinozoa', parent: 'Eleutherozoa', age: 487, image: '', info:''  },
+                                { name: 'Sea urchins', parent: 'Echinozoa', age: 450, image: 'images/seaurchins.jpg', info:''  },
+                                { name: 'Sea cucumbers', parent: 'Echinozoa', age: 470, image: 'images/seacumber.jpg', info:''  },
+                            { name: 'Asterozoa', parent: 'Eleutherozoa', age: 488, image: 'images/Somasteroidea.jpg', info:''  },
+                                { name: 'Starfish', parent: 'Asterozoa', age: 450, image: 'images/starfish.jpg', info:''  },
+                                { name: 'Brittle stars', parent: 'Asterozoa', age: 486, image: 'images/brittlestar.png', info:''  },
             { name: 'Chordata', parent: 'Deuterostomia', age: 0, image: '', info:''  },
 
 
