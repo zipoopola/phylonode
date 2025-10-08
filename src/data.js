@@ -18,7 +18,7 @@ const flatData = [
             { name: 'Soft Corals', parent: 'Anthozoa', age: 0, image: 'images/sea_pen.png', info:'' },
         { name: 'Medusozoa', parent: 'Cnidaria', age: 0, image: '', info:'' },
     { name: 'Bilateria', parent: 'Symmetry', age: 570, image: 'images/bilateria.png', info:'info/bilateria.md' },
-        { name: 'Deuterostomia', parent: 'Bilateria', age: 0, image: '', info:''  },
+        { name: 'Deuterostomia', parent: 'Bilateria', age: 558, image: '', info:''  },
             { name: 'Xenambulacraria', parent: 'Deuterostomia', age: 0, image: '', info:''  },
                 { name: 'Xenacoelomorpha', parent: 'Xenambulacraria', age: 0, image: 'images/xenoturbell.png', info:'info/xenacoelomorpha.md'  },
                     //{ name: 'Xenoturbella', parent: 'Xenacoelomorpha', age: 0, image: 'images/xenoturbell.png', info:''  },                      unnecessary, now within parent group
@@ -33,13 +33,15 @@ const flatData = [
                             { name: 'Asterozoa', parent: 'Eleutherozoa', age: 488, image: 'images/Somasteroidea.jpg', info:''  },
                                 { name: 'Starfish', parent: 'Asterozoa', age: 450, image: 'images/starfish.jpg', info:''  },
                                 { name: 'Brittle stars', parent: 'Asterozoa', age: 486, image: 'images/brittlestar.png', info:''  },
-            { name: 'Chordata', parent: 'Deuterostomia', age: 0, image: '', info:''  },
+            { name: 'Chordata', parent: 'Deuterostomia', age: 539, image: '', info:''  },
+                { name: 'Vetulicolia', parent: 'Chordata', age: 520, image: 'images/Vetulic.jpg', info:'info/vetulic.md'  },
+                { name: 'Cathaymyrus', parent: 'Chordata', age: 518, image: 'images/cathay.png', info:''  },
 
 
 
 
 
-        { name: 'Protostomia', parent: 'Bilateria', age: 0, image: '', info:'' },
+        { name: 'Protostomia', parent: 'Bilateria', age: 558, image: '', info:'' },
         
 
 
