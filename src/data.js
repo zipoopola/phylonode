@@ -34,8 +34,11 @@ const flatData = [
                                 { name: 'Starfish', parent: 'Asterozoa', age: 450, image: 'images/starfish.jpg', info:''  },
                                 { name: 'Brittle stars', parent: 'Asterozoa', age: 486, image: 'images/brittlestar.png', info:''  },
             { name: 'Chordata', parent: 'Deuterostomia', age: 539, image: '', info:''  },
-                { name: 'Vetulicolia', parent: 'Chordata', age: 520, image: 'images/Vetulic.jpg', info:'info/Vetulicolia.md'  },
+                { name: 'Vetulicolia', parent: 'Chordata', age: 520, image: 'images/vetulicolia.jpg', info:'info/vetulicolia.md'  },
                 { name: 'Cathaymyrus', parent: 'Chordata', age: 518, image: 'images/cathay.png', info:''  },
+                { name: 'Cephalochordates', parent: 'Chordata', age: 518, image: 'images/lancelet.png', info:''  },
+                { name: 'Olfactores', parent: 'Chordata', age: 518, image: '', info:''  },
+                    { name: 'Tunicates', parent: 'Olfactores', age: 518, image: 'images/tunicate.jpg', info:'info/tunicates.md'  },
 
 
 
