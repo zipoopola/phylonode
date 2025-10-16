@@ -39,7 +39,9 @@ const flatData = [
                 { name: 'Cephalochordates', parent: 'Chordata', age: 518, image: 'images/lancelet.png', info:''  },
                 { name: 'Olfactores', parent: 'Chordata', age: 518, image: '', info:''  },
                     { name: 'Tunicates', parent: 'Olfactores', age: 518, image: 'images/tunicate.jpg', info:'info/tunicates.md'  },
-
+                    { name: 'Craniates', parent: 'Olfactores', age: 0, image: '', info:''  },
+                        { name: 'Myllokunmingiida', parent: 'Craniates', age: 518, image: 'images/mylo.png', info:''  },
+                        { name: 'Vertebrates', parent: 'Craniates', age: 0, image: '', info:''  },
 
 
 
