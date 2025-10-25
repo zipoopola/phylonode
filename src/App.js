@@ -30,12 +30,14 @@ const infoCircY = nodeDatum.image? -27.5: -7.5;
 const chevY = nodeDatum.image? 0: 21;
 //const chevX = nodeDatum.image? 0 : 0; unused
 
+const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
+//the chev y /21 becomes a binary switch to avoid moving it if it has image. The 3.5 and 15 are trial and error
 
 
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? toggleNode : null}>
       {/* Name above */}
-      <foreignObject x="-60" y={nameY} width="120" height="20">
+      <foreignObject x="-75" y={nameY} width="150" height="20">
         <div
           xmlns="http://www.w3.org/1999/xhtml"
           style={{
@@ -44,6 +46,9 @@ const chevY = nodeDatum.image? 0: 21;
             fontSize: '14px',
             fontWeight: 100,
             lineHeight: '1.2em',
+            // whiteSpace: 'normal',
+            // wordWrap: 'break-word',        doesnt seem to work rn
+            // overflowWrap: 'break-word',
           }}
         >
           {nodeDatum.name}
@@ -94,7 +99,7 @@ const chevY = nodeDatum.image? 0: 21;
         >
           {isCollapsed ? (
             <polyline
-              points="62,-34 66,-37.5 70,-34"
+              points={`${62+nameLen},-34 ${66+nameLen},-37.5 ${70+nameLen},-34`}
               fill="none"
               stroke="#374151"
               strokeWidth="2"
@@ -105,7 +110,7 @@ const chevY = nodeDatum.image? 0: 21;
             />
           ) : (
             <polyline
-              points="62,-34 66,-29.5 70,-34"
+              points={`${62+nameLen},-34 ${66+nameLen},-29.5 ${70+nameLen},-34`}
               fill="none"
               stroke="#374151"
               strokeWidth="2"
@@ -188,9 +193,9 @@ return (
       </defs>
     </svg>
 
-    <main className="flex-grow overflow-auto bg-gray-100 p-8 relative">
-      <div className="bg-white rounded-xl shadow-xl p-6 w-full min-w-[800px] min-h-[600px] overflow-auto">
-        <div className="w-full h-[80vh] overflow-auto">
+    <main className="flex-grow overflow-auto bg-gray-100 p-1 relative">
+      <div className="bg-white rounded-xl shadow-xl p-6 w-full min-w-[800px] min-h-[1200px] overflow-auto"> {/*I changed this to be longer scrolling*/}
+        <div className="w-full h-[500vh] overflow-auto"> {/*and changed this to always cover the scrolled section*/}
         <Tree
           data={treeData}
           orientation="vertical"
