@@ -60,6 +60,24 @@ const flatData = [
                                     { name: 'CrownGnathostomata', parent: 'Placodermi', age: 0, image: '', info:''  },
                                         { name: 'Cartilaginous fishes', parent: 'CrownGnathostomata', age: 0, image: '', info:''  },
                                         { name: 'Bony fishes', parent: 'CrownGnathostomata', age: 0, image: '', info:''  },
+                                            { name: 'Ray-finned fish', parent: 'Bony fishes', age: 0, image: '', info:''  },
+                                            { name: 'Lobe-finned fish', parent: 'Bony fishes', age: 0, image: '', info:''  },
+                                                { name: 'Coelacanths', parent: 'Lobe-finned fish', age: 409, image: 'images/coelacanth.png', info:''  },
+                                                { name: 'Rhipidistia', parent: 'Lobe-finned fish', age: 0, image: '', info:''  },
+                                                    { name: 'Lungfish', parent: 'Rhipidistia', age: 0, image: '', info:''  },
+                                                    { name: 'Tetrapodomorpha', parent: 'Rhipidistia', age: 409, image: '', info:''  },
+                                                        { name: 'Tetrapods', parent: 'Tetrapodomorpha', age: 372, image: '', info:''  },
+                                                            { name: 'Anamniota', parent: 'Tetrapods', age: 0, image: '', info:''  }, //incl diadectomorpha
+                                                            { name: 'Amniota', parent: 'Tetrapods', age: 0, image: '', info:''  },
+                                                                { name: 'Synapsida', parent: 'Amniota', age: 0, image: '', info:''  },
+                                                                { name: 'Sauropsida', parent: 'Amniota', age: 0, image: '', info:''  },
+                                                                    { name: 'Parareptilia', parent: 'Sauropsida', age: 0, image: '', info:''  }, 
+                                                                    { name: 'Eureptilia', parent: 'Sauropsida', age: 0, image: '', info:''  },
+                                                                        { name: 'Other Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  }, //left as a note
+                                                                        { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
+                                                                            { name: 'Lepidosauria', parent: 'Crown Reptiles', age: 0, image: '', info:''  },
+                                                                            { name: 'Archelosauria', parent: 'Crown Reptiles', age: 0, image: '', info:'info/archelosauria.md'},
+
 
 
 
