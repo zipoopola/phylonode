@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
@@ -10,11 +10,6 @@ import { infoNodes } from './infoList';
 
 
 const treeData = [buildTree(data)];   //define data
-
-const containerStyles = {
-  width: '100%',
-  height: '100vh',
-};
 
 
 const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
