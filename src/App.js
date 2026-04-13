@@ -31,7 +31,7 @@ const chevY = nodeDatum.image? 0: 21;
 //const chevX = nodeDatum.image? 0 : 0; unused
 
 const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
-//the chev y /21 becomes a binary switch to avoid moving it if it has image. The 3.5 and 15 are trial and error
+//the chev y /21 becomes a binary switch to avoid moving chevron if node has image. The 3.5 and 15 are trial and error to move chevron to end of name
 
 
   return (
@@ -160,6 +160,8 @@ const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
 function App() {
   const [infoNode, setInfoNode] = useState(null);
   const [infoText, setInfoText] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
 
 useEffect(() => {
   if (infoNode && infoNode.info) {
@@ -178,11 +180,43 @@ useEffect(() => {
   }
 }, [infoNode]);
 
+//search function
+useEffect(() => {
+    if (!searchQuery) return;
+
+    const lowerQuery = searchQuery.toLowerCase();
+
+    function findNode(node) {
+      if (node.name.toLowerCase().includes(lowerQuery)) return node;
+      if (node.children) {
+        for (const child of node.children) {
+          const result = findNode(child);
+          if (result) return result;
+        }
+      }
+      return null;
+    }
+
+    const matchedNode = findNode(treeData[0]);
+    if (matchedNode) {
+      setInfoNode(matchedNode); // opens the sidebar for the matched node
+      // Optional: here you could also programmatically expand parent nodes if desired
+    }
+  }, [searchQuery]);
+
 return (
   <div className="min-h-screen flex flex-col">
     {/* Full-width header */}
-    <header className="w-full bg-white shadow-md py-3 px-8">
+    <header className="w-full bg-white shadow-md py-3 px-8 ">
       <h1 className="text-2xl font-bold text-gray-800">Phylogeny Visualiser</h1>
+    {/* Searchbar */}      
+      <input
+      type="text"
+      placeholder="Search..."
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      className="border rounded-md px-3 py-1 text-sm focus:outline-none"
+    />
     </header>
 
     <svg style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}>

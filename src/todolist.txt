@@ -2,4 +2,4 @@ C:\Users\Zipoo\OneDrive\Desktop\phylogeny-visualiser
 
 
 somewhat unclear how crinoides evolved
-atm chevrons can clip very long names if they dont have images this is probably fine...?
+very hard to expand all children and children of children

@@ -6,7 +6,7 @@ export default function buildTree(flatData) {
 
   // First pass: create all nodes
   flatData.forEach(item => {
-    nodes[item.name] = { ...item, children: [] };
+    nodes[item.name] = { ...item, children: []};
   });
 
   // Second pass: assign children to parents
