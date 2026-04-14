@@ -65,7 +65,7 @@ const flatData = [
                                                 { name: 'Coelacanths', parent: 'Lobe-finned fish', age: 409, image: 'images/coelacanth.png', info:''  },
                                                 { name: 'Rhipidistia', parent: 'Lobe-finned fish', age: 0, image: '', info:''  },
                                                     { name: 'Lungfish', parent: 'Rhipidistia', age: 0, image: '', info:''  },
-                                                    { name: 'Tetrapodomorpha', parent: 'Rhipidistia', age: 409, image: '', info:''  },
+                                                    { name: 'Tetrapodomorpha', parent: 'Rhipidistia', age: 409, image: 'images/tiktaalik.jpg', info:'info/tetrapodomorpha.md'},
                                                         { name: 'Tetrapods', parent: 'Tetrapodomorpha', age: 372, image: '', info:''  },
                                                             { name: 'Anamniota', parent: 'Tetrapods', age: 0, image: '', info:''  }, //incl diadectomorpha
                                                             { name: 'Amniota', parent: 'Tetrapods', age: 0, image: '', info:''  },
