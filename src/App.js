@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
@@ -52,7 +52,6 @@ const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
     }
     toggleNode();
   };
-
 
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? handleToggle : null}>
@@ -181,6 +180,17 @@ function App() {
   const [infoNode, setInfoNode] = useState(null);
   const [infoText, setInfoText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const treeContainerRef = useRef(null);
+
+  //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
+  useEffect(() => {
+  const el = treeContainerRef.current;
+  if (!el) return;
+  const handler = (e) => e.preventDefault();
+  el.addEventListener('wheel', handler, { passive: false });
+  return () => el.removeEventListener('wheel', handler);
+}, []);
+
 
   // Called when a collapsed node is about to be expanded —
   // pre-marks all its descendants as expanded so react-d3-tree renders them open.
@@ -257,11 +267,12 @@ return (
 
     <main className="flex-grow overflow-auto bg-gray-100 p-1 relative">
       <div className="bg-white rounded-xl shadow-xl p-6 w-full min-w-[800px] min-h-[1200px] overflow-auto"> {/*I changed this to be longer scrolling*/}
-        <div className="w-full h-[500vh] overflow-auto"> {/*and changed this to always cover the scrolled section*/}
+        <div className="w-full h-[500vh] overflow-auto" ref={treeContainerRef}> {/*and changed this to always cover the scrolled section*/}
         <Tree
           data={treeData}
           orientation="vertical"
           zoomable
+          scaleExtent={{ min: 0.1, max: 4.5 }}
           collapsible
           translate={{ x: 500, y: 100 }}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
