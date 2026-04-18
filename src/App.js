@@ -11,8 +11,26 @@ import { infoNodes } from './infoList';
 
 const treeData = [buildTree(data)];   //define data
 
+//new function to expand all node descendants. recursively set collapsed = false on all descendants
+function expandAllDescendants(node) {
+  if (!node) return;
+  if (node.__rd3t) {
+    node.__rd3t.collapsed = false;
+  }
+  if (node.children) {
+    node.children.forEach(expandAllDescendants);
+  }
+  // Also expand _collapsed children (react-d3-tree moves children here when collapsed)
+  if (node.__rd3t && node.__rd3t.collapsed === false && node._children) {
+    node.children = node._children;
+    node._children = null;
+    node.children.forEach(expandAllDescendants);
+  }
+}
 
-const renderCustomNode = (setInfoNode) => ({ nodeDatum, toggleNode }) => {
+
+
+const renderCustomNode = (setInfoNode, onExpandAll) => ({ nodeDatum, toggleNode }) => {
   const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
   const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
 
@@ -21,16 +39,23 @@ const nameY = nodeDatum.image ? -56 : -20;
 const ageY = nodeDatum.image ? 38 : 0;
 const infoiY = nodeDatum.image? -32.5: -12.5;
 const infoCircY = nodeDatum.image? -27.5: -7.5;
-
 const chevY = nodeDatum.image? 0: 21;
 //const chevX = nodeDatum.image? 0 : 0; unused
 
 const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
 //the chev y /21 becomes a binary switch to avoid moving chevron if node has image. The 3.5 and 15 are trial and error to move chevron to end of name
 
+ const handleToggle = () => {
+    // If we're about to expand (currently collapsed), expand all descendants too
+    if (isCollapsed) {
+      onExpandAll(nodeDatum);
+    }
+    toggleNode();
+  };
+
 
   return (
-    <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? toggleNode : null}>
+    <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? handleToggle : null}>
       {/* Name above */}
       <foreignObject x="-75" y={nameY} width="150" height="20">
         <div
@@ -89,7 +114,7 @@ const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
           style={{ cursor: 'pointer' }}
           onClick={(e) => {
             e.stopPropagation(); // prevent triggering node click
-            toggleNode();        // toggle expand/collapse
+            handleToggle();        // toggle expand/collapse
           }}
         >
           {isCollapsed ? (
@@ -156,6 +181,14 @@ function App() {
   const [infoNode, setInfoNode] = useState(null);
   const [infoText, setInfoText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Called when a collapsed node is about to be expanded —
+  // pre-marks all its descendants as expanded so react-d3-tree renders them open.
+  const handleExpandAll = (nodeDatum) => {
+    if (nodeDatum.children) {
+      nodeDatum.children.forEach(expandAllDescendants);
+    }
+  };
 
 
 useEffect(() => {
@@ -233,7 +266,7 @@ return (
           translate={{ x: 500, y: 100 }}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
           nodeSize={{ x: 200, y: 145 }}
-          renderCustomNodeElement={renderCustomNode(setInfoNode)}
+          renderCustomNodeElement={renderCustomNode(setInfoNode, handleExpandAll)}
           
           pathFunc={(linkData) => {
           const offsetY = 55; // Adjust this if your node has a taller label or extra info

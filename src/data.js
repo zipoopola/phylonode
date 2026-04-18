@@ -76,8 +76,14 @@ const flatData = [
                                                                         { name: 'Other Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  }, //left as a note
                                                                         { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
                                                                             { name: 'Lepidosauria', parent: 'Crown Reptiles', age: 0, image: '', info:''  },
-                                                                            { name: 'Archelosauria', parent: 'Crown Reptiles', age: 0, image: '', info:'info/archelosauria.md'},
-
+                                                                            { name: 'Archelosauria', parent: 'Crown Reptiles', age: 269, image: '', info:'info/archelosauria.md'},
+                                                                                { name: 'Pantestudines', parent: 'Archelosauria', age: 0, image: '', info:''},
+                                                                                { name: 'Archosauromorpha', parent: 'Archelosauria', age: 267, image: '', info:''},
+                                                                                    { name: 'Marine reptile complex', parent: 'Archosauromorpha', age: 261, image: '', info:''},
+                                                                                        { name: 'Thalattosauria', parent: 'Marine reptile complex', age: 0, image: '', info:''},
+                                                                                        { name: 'Ichthyosauromorpha', parent: 'Marine reptile complex', age: 0, image: '', info:''},
+                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 0, image: '', info:'info/Sauropterygians.md'},
+                                                                                    { name: 'CrownArchosauromorpha', parent: 'Archosauromorpha', age: 264, image: '', info:''},
 
 
 
