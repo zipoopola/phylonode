@@ -82,7 +82,7 @@ const flatData = [
                                                                                     { name: 'Marine reptile complex', parent: 'Archosauromorpha', age: 261, image: '', info:''},
                                                                                         { name: 'Thalattosauria', parent: 'Marine reptile complex', age: 0, image: '', info:''},
                                                                                         { name: 'Ichthyosauromorpha', parent: 'Marine reptile complex', age: 0, image: '', info:''},
-                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 0, image: '', info:'info/Sauropterygians.md'},
+                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 0, image: '', info:'info/sauropterygomorpha.md'},
                                                                                     { name: 'CrownArchosauromorpha', parent: 'Archosauromorpha', age: 264, image: '', info:''},
 
 
