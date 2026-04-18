@@ -245,7 +245,7 @@ useEffect(() => {
 return (
   <div className="min-h-screen flex flex-col">
     {/* Full-width header */}
-    <header className="w-full bg-white shadow-md py-3 px-8 ">
+    <header className="w-full bg-white shadow-md py-2 px-8 flex items-center gap-6 ">
       <h1 className="text-2xl font-bold text-gray-800">Phylogeny Visualiser</h1>
     {/* Searchbar */}      
       <input

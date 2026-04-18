@@ -1,0 +1,1 @@
+Guiyu oneiros is one of the earliest-known bony fish, and has a combination of both ray and lobe finned features, though analysis places it closer to lobe-finned Fish.
