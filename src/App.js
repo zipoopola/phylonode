@@ -30,7 +30,11 @@ function expandAllDescendants(node) {
 
 
 
-const renderCustomNode = (setInfoNode, onExpandAll) => ({ nodeDatum, toggleNode }) => {
+const renderCustomNode = (setInfoNode, onExpandAll, nodePositions) => ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
+// record node postion for search panning
+if (hierarchyPointNode) {
+  nodePositions.current[nodeDatum.name] = {x: hierarchyPointNode.x, y: hierarchyPointNode.y};
+}
   const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
   const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
 
@@ -45,13 +49,13 @@ const chevY = nodeDatum.image? 0: 21;
 const nameLen = (chevY/21)*3.5*(nodeDatum.name.length - 15)
 //the chev y /21 becomes a binary switch to avoid moving chevron if node has image. The 3.5 and 15 are trial and error to move chevron to end of name
 
- const handleToggle = () => {
-    // If we're about to expand (currently collapsed), expand all descendants too
-    if (isCollapsed) {
-      onExpandAll(nodeDatum);
-    }
-    toggleNode();
-  };
+const handleToggle = () => {
+  // If we're about to expand (currently collapsed), expand all descendants too
+  if (isCollapsed) {
+    onExpandAll(nodeDatum);
+  }
+  toggleNode();
+};
 
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? handleToggle : null}>
@@ -181,6 +185,10 @@ function App() {
   const [infoText, setInfoText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const treeContainerRef = useRef(null);
+  const [translate, setTranslate] = useState({ x: 500, y: 100 }); //beggining translate (changed by search fn)
+  const nodePositions = useRef({}); //variable to store position of searched node
+  const animationRef = useRef(null); //variable to track search panning animation
+
 
   //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
   useEffect(() => {
@@ -238,8 +246,42 @@ useEffect(() => {
     const matchedNode = findNode(treeData[0]);
     if (matchedNode) {
       setInfoNode(matchedNode); // opens the sidebar for the matched node
+
+      // const pos = nodePositions.current[matchedNode.name];
+      // if (pos) {                                                         OLD way functional! - no panimation
+      // setTranslate({ x: 500 - pos.x, y: 100 - pos.y });
+      // }        
+
+
+      const pos = nodePositions.current[matchedNode.name];
+      if (pos){
+        const target = { x:500 - pos.x, y:100 - pos.y};
+        const duration = 600; //ms
+        const start = performance.now();
+        const from = { ...translate };
+
+        //cancel pan animation if another search happens
+        if (animationRef.current) cancelAnimationFrame(animationRef.current)
+
+        function animate(now) {
+          const elapsed = now - start;
+          const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation
+          const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //parabolic curve to ensure speed is smooth at the start and end
+
+          setTranslate({
+            x: from.x + (target.x - from.x) * eased,
+            y: from.y + (target.y - from.y)*eased, 
+          });
+
+          if (t<1) {
+            animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, don't translate automatically, allow the animation to do it
+          }
+        }
+        animationRef.current = requestAnimationFrame(animate); 
+    }
       // Optional: here you could also programmatically expand parent nodes if desired
     }
+
   }, [searchQuery]);
 
 return (
@@ -274,10 +316,10 @@ return (
           zoomable
           scaleExtent={{ min: 0.1, max: 4.5 }}
           collapsible
-          translate={{ x: 500, y: 100 }}
+          translate={translate}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
           nodeSize={{ x: 200, y: 145 }}
-          renderCustomNodeElement={renderCustomNode(setInfoNode, handleExpandAll)}
+          renderCustomNodeElement={renderCustomNode(setInfoNode, handleExpandAll, nodePositions)}
           
           pathFunc={(linkData) => {
           const offsetY = 55; // Adjust this if your node has a taller label or extra info
