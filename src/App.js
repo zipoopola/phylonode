@@ -188,7 +188,11 @@ function App() {
   const [translate, setTranslate] = useState({ x: 500, y: 100 }); //beggining translate (changed by search fn)
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
-
+  const translateRef = useRef(translate); // avoids declaring translate as a dependencey
+  
+  useEffect(() => {
+  translateRef.current = translate;
+  }, [translate]);       //keeps translate ref in sync
 
   //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
   useEffect(() => {
@@ -255,29 +259,29 @@ useEffect(() => {
 
       const pos = nodePositions.current[matchedNode.name];
       if (pos){
-        const target = { x:500 - pos.x, y:100 - pos.y};
+        const target = { x:500 - pos.x, y:100 - pos.y};  //sets target relative to start
         const duration = 600; //ms
-        const start = performance.now();
-        const from = { ...translate };
+        const start = performance.now(); // starts a timer NOW at 0ms
+        const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
 
-        //cancel pan animation if another search happens
+        //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
         if (animationRef.current) cancelAnimationFrame(animationRef.current)
 
-        function animate(now) {
-          const elapsed = now - start;
-          const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation
-          const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //parabolic curve to ensure speed is smooth at the start and end
+        function animate(now) {     //defines a fn that runs every frame
+          const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
+          const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
+          const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
 
           setTranslate({
-            x: from.x + (target.x - from.x) * eased,
-            y: from.y + (target.y - from.y)*eased, 
+            x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
+            y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
           });
 
           if (t<1) {
-            animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, don't translate automatically, allow the animation to do it
+            animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
           }
         }
-        animationRef.current = requestAnimationFrame(animate); 
+        animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
     }
       // Optional: here you could also programmatically expand parent nodes if desired
     }
