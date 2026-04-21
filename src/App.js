@@ -147,23 +147,36 @@ const handleToggle = () => {
       )}
 
       {/* (i) icon which only appears on nodes that have info, which is updated by: npm run infoList*/}
-      {infoNodes.has(nodeDatum.name.toLowerCase()) && (
-      <g
-        onClick={(e) => {
-          e.stopPropagation();
-          setInfoNode(nodeDatum);
-        }}
-        style={{ cursor: 'pointer' }}
-      >
-        <circle cx="-60" cy={infoCircY} r="10" fill="#e5e7eb" stroke="#9ca3af" />
-        <foreignObject x="-65" y={infoiY} width="10" height="10">
+      {/* new shiny (i) icon appears for infonodes, all else have the basic version*/}
+      {(() => {
+        const hasInfo = infoNodes.has(nodeDatum.name.toLowerCase());
+        const r = hasInfo ? 13 : 10; //(i) icon is larger if it has info
+        return (
+        <g
+          onClick={(e) => {
+            e.stopPropagation();
+            setInfoNode(nodeDatum);
+          }}
+          style={{ cursor: 'pointer' }}
+        >
+          <defs>                                         {/* shiny gradient defined, gradient between 3 colours, with the centre (most shiny) at upper left (0.35,0.35), grad covers 60% of element*/}
+            <radialGradient id="goldShine" cx="35%" cy="35%" r="60%">
+              <stop offset="0%" stopColor="#FEFBB0" />           {/* browner shine: FDE68A, F59E0B, B45309*/}
+              <stop offset="50%" stopColor="#EFC93D" />
+              <stop offset="100%" stopColor="#A67C00" />
+            </radialGradient>
+          </defs>
+           <circle cx="-60" cy={infoCircY} r={r} fill={hasInfo ? 'url(#goldShine)' : '#e5e7eb'} 
+           stroke={hasInfo ? "#7A6200":"#9ca3af"} strokeWidth={hasInfo ? 1.5:1}                   //border colour and thickness
+           />
+           <foreignObject x="-65" y={infoiY} width="10" height="10">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
             style={{
               fontFamily: 'vivaldi',
-              fontSize: '18px',
+              fontSize: hasInfo ? '21px' : '18px',
               textAlign: 'center',
-              color: '#374151',
+              color: hasInfo? '#5C4800' : '#374151',
               fontWeight: 700,
               lineHeight: '10px',
               pointerEvents: 'none',
@@ -172,8 +185,9 @@ const handleToggle = () => {
             i
           </div>
         </foreignObject>
-      </g>
-      )}
+        </g>
+        );
+      })()}
     </g>
   );
 };
@@ -316,7 +330,7 @@ return (
           data={treeData}
           orientation="vertical"
           zoomable 
-          zoom={Math.min(0.7, window.innerWidth / 1200)}  //initial zoom, 0.7 for larger screens, or more zoomed out on smaller screens
+          zoom={0.7*window.innerWidth / 1200}  //initial zoom, 0.7 for the largest screens, or more zoomed out on smaller screens
           scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
           translate={translate}
