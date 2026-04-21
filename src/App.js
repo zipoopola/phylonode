@@ -186,7 +186,7 @@ function App() {
   const [infoText, setInfoText] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const treeContainerRef = useRef(null);
-  const [translate, setTranslate] = useState({ x: 500, y: 100 }); //beggining translate (changed by search fn)
+  const [translate, setTranslate] = useState({ x: window.innerWidth / 2, y: 100 }); //beggining translate (changed by search fn) x is set relative to screen width
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
@@ -255,7 +255,7 @@ useEffect(() => {
         }
         const pos = nodePositions.current[matchedNode.name];
         if (pos){
-          const target = { x:500 - pos.x, y:100 - pos.y};  //sets target relative to start
+          const target = { x: window.innerWidth / 2 - pos.x, y:100 - pos.y};  //sets target relative to start
           const duration = 1000; //ms
           const start = performance.now(); // starts a timer NOW at 0ms
           const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
