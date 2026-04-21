@@ -316,7 +316,7 @@ return (
           data={treeData}
           orientation="vertical"
           zoomable 
-          zoom={0.7} //initial zoom
+          zoom={Math.min(0.7, window.innerWidth / 1200)}  //initial zoom, 0.7 for larger screens, or more zoomed out on smaller screens
           scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
           translate={translate}
