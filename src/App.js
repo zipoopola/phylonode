@@ -179,6 +179,7 @@ const handleToggle = () => {
 };
 
 
+const isMobile = window.innerWidth < 768; // is the user on mobile? (narrow screen)
 
 function App() {
   const [infoNode, setInfoNode] = useState(null);
@@ -189,7 +190,6 @@ function App() {
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
-  const isMobile = window.innerWidth < 768; // is the user on mobile? (narrow screen)
   
   useEffect(() => {
   translateRef.current = translate;
