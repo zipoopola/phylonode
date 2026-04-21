@@ -289,7 +289,7 @@ useEffect(() => {
 return (
   <div className="min-h-screen flex flex-col">
     {/* Full-width header */}
-    <header className="w-full bg-white shadow-md py-2 px-8 flex items-center gap-6 ">
+    <header className="w-full bg-white shadow-md py-2 px-8 flex items-center gap-6 sticky top-0 z-30 md:relative">      {/*sticky top-0 z-30 makes top stick, md:relative overrites this for larger screens*/}
       <h1 className="text-2xl font-bold text-gray-800">Phylogeny Visualiser</h1>
     {/* Searchbar */}      
       <input
@@ -310,13 +310,14 @@ return (
     </svg>
 
     <main className="flex-grow overflow-auto bg-gray-100 p-1 relative">
-      <div className="bg-white rounded-xl shadow-xl p-6 w-full min-w-[800px] min-h-[1200px] overflow-auto"> {/*I changed this to be longer scrolling*/}
+      <div className="bg-white rounded-xl shadow-xl p-1 w-full min-w-[800px] min-h-[1200px] overflow-auto"> {/*I changed this to be longer scrolling and reduced padding for mobile experience*/}
         <div className="w-full h-[500vh] overflow-auto" ref={treeContainerRef}> {/*and changed this to always cover the scrolled section*/}
         <Tree
           data={treeData}
           orientation="vertical"
-          zoomable
-          scaleExtent={{ min: 0.1, max: 4.5 }}
+          zoomable 
+          zoom={0.7} //initial zoom
+          scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
           translate={translate}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
