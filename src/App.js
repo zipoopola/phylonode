@@ -189,6 +189,7 @@ function App() {
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
+  const isMobile = window.innerWidth < 768; // is the user on mobile? (narrow screen)
   
   useEffect(() => {
   translateRef.current = translate;
@@ -233,58 +234,55 @@ useEffect(() => {
 //search function
 useEffect(() => {
     if (!searchQuery) return;
+    const delay = setTimeout(() => {     //delay to not debounce     
+      const lowerQuery = searchQuery.toLowerCase();
 
-    const lowerQuery = searchQuery.toLowerCase();
-
-    function findNode(node) {
-      if (node.name.toLowerCase().includes(lowerQuery)) return node;
-      if (node.children) {
-        for (const child of node.children) {
-          const result = findNode(child);
-          if (result) return result;
-        }
-      }
-      return null;
-    }
-
-    const matchedNode = findNode(treeData[0]);
-    if (matchedNode) {
-      setInfoNode(matchedNode); // opens the sidebar for the matched node
-
-      // const pos = nodePositions.current[matchedNode.name];
-      // if (pos) {                                                         OLD way functional! - no panimation
-      // setTranslate({ x: 500 - pos.x, y: 100 - pos.y });
-      // }        
-
-
-      const pos = nodePositions.current[matchedNode.name];
-      if (pos){
-        const target = { x:500 - pos.x, y:100 - pos.y};  //sets target relative to start
-        const duration = 600; //ms
-        const start = performance.now(); // starts a timer NOW at 0ms
-        const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
-
-        //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
-        if (animationRef.current) cancelAnimationFrame(animationRef.current)
-
-        function animate(now) {     //defines a fn that runs every frame
-          const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
-          const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
-          const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
-
-          setTranslate({
-            x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
-            y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
-          });
-
-          if (t<1) {
-            animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
+      function findNode(node) {
+        if (node.name.toLowerCase().includes(lowerQuery)) return node;
+        if (node.children) {
+          for (const child of node.children) {
+            const result = findNode(child);
+            if (result) return result;
           }
         }
-        animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
-    }
-      // Optional: here you could also programmatically expand parent nodes if desired
-    }
+        return null;
+      }
+
+      const matchedNode = findNode(treeData[0]);
+      if (matchedNode) {
+        if (!isMobile){
+          setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
+        }
+        const pos = nodePositions.current[matchedNode.name];
+        if (pos){
+          const target = { x:500 - pos.x, y:100 - pos.y};  //sets target relative to start
+          const duration = 1000; //ms
+          const start = performance.now(); // starts a timer NOW at 0ms
+          const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
+
+          //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
+          if (animationRef.current) cancelAnimationFrame(animationRef.current)
+
+          function animate(now) {     //defines a fn that runs every frame
+            const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
+            const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
+            const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
+
+            setTranslate({
+              x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
+              y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
+            });
+
+            if (t<1) {
+              animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
+            }
+          }
+          animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
+      }
+
+      }
+    }, 500); // 0.5 second    *** set to zero to bring back debounce
+    return () => clearTimeout(delay); // cancel if user types again before 1s is up     
 
   }, [searchQuery]);
 
