@@ -312,7 +312,7 @@ useEffect(() => {
     }, 500); // 0.5 second    *** set to zero to bring back debounce
     return () => clearTimeout(delay); // cancel if user types again before 1s is up     
 
-  }, [searchQuery]);
+  }, [searchQuery, panToNode]);
 
 function findPath(node, targetName, path = []){
   const currentPath = [...path, node];
