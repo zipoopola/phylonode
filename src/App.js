@@ -59,6 +59,17 @@ const handleToggle = () => {
 
   return (
     <g style={{ cursor: hasChildren ? 'pointer' : 'default' }} onClick={hasChildren ? handleToggle : null}>
+      {/* hover highlight*/}
+      {/* {hasChildren && (
+        <circle
+        r="45"
+        className="node-highlight"
+        stroke="transparent"
+      />
+    )}                                                  WIP */}
+
+
+
       {/* Name above */}
       <foreignObject x="-75" y={nameY} width="150" height="20">
         <div
@@ -220,13 +231,42 @@ function App() {
 }, []);
 
 
-  // Called when a collapsed node is about to be expanded —
-  // pre-marks all its descendants as expanded so react-d3-tree renders them open.
-  const handleExpandAll = (nodeDatum) => {
-    if (nodeDatum.children) {
-      nodeDatum.children.forEach(expandAllDescendants);
+// Called when a collapsed node is about to be expanded —
+// pre-marks all its descendants as expanded so react-d3-tree renders them open.
+const handleExpandAll = (nodeDatum) => {
+  if (nodeDatum.children) {
+    nodeDatum.children.forEach(expandAllDescendants);
+  }
+};
+
+//defined a function for panning. before this was within the search fn, but now it needs using from the sidebar breadcrumbs too, so to not replicate code:
+const panToNode = (node) => {
+  const pos = nodePositions.current[node.name];
+  if (pos){
+    const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
+    const duration = 1000; //ms
+    const start = performance.now(); // starts a timer NOW at 0ms
+    const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
+
+    //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
+    if (animationRef.current) cancelAnimationFrame(animationRef.current)
+
+    function animate(now) {     //defines a fn that runs every frame
+      const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
+      const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
+      const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
+      setTranslate({
+        x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
+        y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
+      });
+
+      if (t<1) {
+        animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
+      }
     }
-  };
+    animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
+  }
+};
 
 
 useEffect(() => {
@@ -265,41 +305,26 @@ useEffect(() => {
 
       const matchedNode = findNode(treeData[0]);
       if (matchedNode) {
-        if (!isMobile){
-          setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
-        }
-        const pos = nodePositions.current[matchedNode.name];
-        if (pos){
-          const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
-          const duration = 1000; //ms
-          const start = performance.now(); // starts a timer NOW at 0ms
-          const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
-
-          //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
-          if (animationRef.current) cancelAnimationFrame(animationRef.current)
-
-          function animate(now) {     //defines a fn that runs every frame
-            const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
-            const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
-            const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
-
-            setTranslate({
-              x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
-              y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
-            });
-
-            if (t<1) {
-              animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
-            }
-          }
-          animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
+        if (!isMobile){setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
+        panToNode(matchedNode); //this is the whole function to pan to the named node
       }
-
       }
     }, 500); // 0.5 second    *** set to zero to bring back debounce
     return () => clearTimeout(delay); // cancel if user types again before 1s is up     
 
   }, [searchQuery]);
+
+function findPath(node, targetName, path = []){
+  const currentPath = [...path, node];
+  if (node.name === targetName) return currentPath;   //starts at top and looks down trying to find the node in question. It adds the node each time as it goes down
+  if (node.children) {
+    for (const child of node.children) {
+      const result = findPath(child, targetName, currentPath);     //current path gets passed down as it looks downwards
+      if (result) return result;
+    }
+  }
+  return null;   //if it looks in the wrong direction, don't return anything
+}
 
 return (
   <div className="min-h-screen flex flex-col">
@@ -370,6 +395,28 @@ return (
             >
               Close
             </button>
+
+            {/* breadcrumbs*/}
+            {(() => {
+              const path = findPath(treeData[0], infoNode.name) || [];
+              const crumbs = path.filter(n => n.rank); // only nodes with a rank in data.js get added to the crumbs list
+              return crumbs.length > 0 && (
+                <div className="text-xs text-gray-400 mb-2 flex flex-wrap gap-1">
+                  {crumbs.map((n, i) => (
+                    <span
+                      key={n.name}
+                      onClick={() => {
+                        setInfoNode(n);
+                        panToNode(n);
+                      }}
+                      className="cursor-pointer hover:text-gray-600 transition-colors"
+                    >
+                      {n.name}{i < crumbs.length - 1 ? ' →' : ''}        {/*adds arrows between each crumb not after the end one tho */}
+                    </span>
+                  ))}
+                </div>
+              );
+            })()}
 
             {/*node name, image, age are in side bar */}
             <h2 className="text-lg font-semibold mb-2">{infoNode.name}</h2>

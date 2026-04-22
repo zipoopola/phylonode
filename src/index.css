@@ -6,3 +6,14 @@
   stroke: #4B5563 !important;
   stroke-width: 2px !important;
 }
+
+/* .node-highlight {
+  fill: rgba(0,0,0,0);
+  transition: fill 150ms ease;
+  pointer-events: all;
+}
+
+.node-highlight:hover {
+  fill: rgba(0,0,0,0.04);
+}                                                   WIP */
+
