@@ -106,7 +106,7 @@ const handleToggle = () => {
               lineHeight: '1.2em',
             }}
           >
-            {nodeDatum.age} MYA
+            {nodeDatum.ageEnd? `${nodeDatum.age}-${nodeDatum.ageEnd} MYA` : `${nodeDatum.age} MYA`}
           </div>
         </foreignObject>
       )}
@@ -146,8 +146,7 @@ const handleToggle = () => {
         </g>
       )}
 
-      {/* (i) icon which only appears on nodes that have info, which is updated by: npm run infoList*/}
-      {/* new shiny (i) icon appears for infonodes, all else have the basic version*/}
+      {/* new shiny (i) icon appears for infonodes, all else have the basic version - this is updated by --- npm run infoList ---*/}
       {(() => {
         const hasInfo = infoNodes.has(nodeDatum.name.toLowerCase());
         const r = hasInfo ? 13 : 10; //(i) icon is larger if it has info
@@ -204,6 +203,8 @@ function App() {
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
+  const zoom= 0.7*window.innerWidth / 1200;  //initial zoom, 0.7 for the largest screens, or more zoomed out on smaller screens
+
   
   useEffect(() => {
   translateRef.current = translate;
@@ -269,7 +270,7 @@ useEffect(() => {
         }
         const pos = nodePositions.current[matchedNode.name];
         if (pos){
-          const target = { x: window.innerWidth / 2 - pos.x, y:100 - pos.y};  //sets target relative to start
+          const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
           const duration = 1000; //ms
           const start = performance.now(); // starts a timer NOW at 0ms
           const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
@@ -330,7 +331,7 @@ return (
           data={treeData}
           orientation="vertical"
           zoomable 
-          zoom={0.7*window.innerWidth / 1200}  //initial zoom, 0.7 for the largest screens, or more zoomed out on smaller screens
+          zoom={zoom}  
           scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
           translate={translate}
@@ -384,7 +385,7 @@ return (
 
             {infoNode.age && (
               <p className="text-sm text-gray-600 mb-1">
-                Age: {infoNode.age} MYA
+                Age: {infoNode.ageEnd? `${infoNode.age}-${infoNode.ageEnd} MYA` : `${infoNode.age} MYA`} 
               </p>
             )}
 
