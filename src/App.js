@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
@@ -240,7 +240,7 @@ const handleExpandAll = (nodeDatum) => {
 };
 
 //defined a function for panning. before this was within the search fn, but now it needs using from the sidebar breadcrumbs too, so to not replicate code:
-const panToNode = (node) => {
+const panToNode = useCallback((node) => {          
   const pos = nodePositions.current[node.name];
   if (pos){
     const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
@@ -266,7 +266,7 @@ const panToNode = (node) => {
     }
     animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
   }
-};
+}, [zoom]);      //pan to node fn only updated when zoom changes
 
 
 useEffect(() => {
