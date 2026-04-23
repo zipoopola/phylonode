@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Tree from 'react-d3-tree';
 import data from './data';
 import buildTree from './buildTree';
@@ -6,8 +6,6 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';       // GitHub Flavored Markdown (for lists, tables, etc.)
 import remarkBreaks from 'remark-breaks'; // For line breaks with single newlines
 import { infoNodes } from './infoList';
-import { info } from "autoprefixer";
-
 
 
 const treeData = [buildTree(data)];   //define data
