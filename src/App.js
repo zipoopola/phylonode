@@ -305,9 +305,8 @@ useEffect(() => {
 
       const matchedNode = findNode(treeData[0]);
       if (matchedNode) {
-        if (!isMobile){setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
+        if (!isMobile) setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
         panToNode(matchedNode); //this is the whole function to pan to the named node
-      }
       }
     }, 500); // 0.5 second    *** set to zero to bring back debounce
     return () => clearTimeout(delay); // cancel if user types again before 1s is up     
@@ -384,11 +383,20 @@ return (
           {/*above sets an overlay, that when clicked, closes any sidebar*/}
           {/* Sidebar panel charactersitics, when clicked inside, it doesn't propagate to outside code (hence doesnt close)*/}
           <div
-            className="absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50"
+          classname={isMobile?
+            "absolute bottom-0 left-0 w-full h-0.4 bg-white shadow-lg p-4 border-t border-gray-300 overflow-y-auto z-50 rounded-t-2xl"  //bottom border for mobile
+            :"absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50"
+            }
             onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside the panel
           >
+            {/* drag handle for mobile */}
+            {isMobile && (
+              <div className="flex justify-center mb-3">
+                <div className="w-10 h-1 bg-gray-300 rounded-full"/>
+              </div>
+            )}
 
-            {/*close button optional*/}
+            {/*close button*/}
             <button
               className="text-sm text-gray-500 hover:text-gray-800 mb-4"
               onClick={() => setInfoNode(null)}

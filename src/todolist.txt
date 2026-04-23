@@ -1,9 +1,29 @@
 C:\Users\Zipoo\OneDrive\Desktop\phylogeny-visualiser
 
+panning infinitely issue unfixed
+
+mobile issues:
+search not functional
+breadcrumb pan brings up sidebar, which is a bit big still
 
 somewhat unclear how crinoides evolved
-very hard to expand all children and children of children
 
 anamniota order is unclear - research req
 
 Other reptiles needs fixing
+
+tetrapodomorpha detail
+
+a lot more could be added to the marine reptile complex. For now i will keep it simple. view these for more info
+
+
+
+2023 wolniewicz
+Our phylogenetic analysis suggests that Eusaurosphargis 
+and Palatodonta likely represent the morphology of the last common terrestrial ancestor of sauropterygians,
+
+The evolution of the sauropterygian body plan demonstrates striking parallels with the evolution of the body plan
+ of another important group of Mesozoic marine reptiles – the ichthyosaurs. Early-diverging representatives of 
+ Ichthyosauromorpha – hupehsuchians and omphalosaurids – also possesed a covering of osteoderms superficially similar
+  to that present in Eusaurosphargis, early-diverging placodonts, and saurosphargids
+
