@@ -229,17 +229,16 @@ function App() {
 }, []);
 
 useEffect(() => {
-  const el = treeContainerRef.current;
   if (isMobile && infoNode) {
     document.body.style.overflow = 'hidden';
-    if (el) el.style.touchAction = 'none';  //no touching or scrolling on treecontainer, but is still allowed on bottombar (we explicitely allow in bottom bar panel code)
+    document.body.style.touchAction = 'none';
   } else {
-    document.body.style.overflow = '';   // allowed if not on mobile
-    if (el) el.style.touchAction = '';
+    document.body.style.overflow = '';      //stops touching and scrolling allowed when infoNode open
+    document.body.style.touchAction = '';
   }
   return () => {
     document.body.style.overflow = '';    //restored touch ability when infoNode not open
-    if (el) el.style.touchAction = '';
+    document.body.style.touchAction = '';
   };
 }, [infoNode]);
 
@@ -397,11 +396,10 @@ return (
           {/* Sidebar panel charactersitics, when clicked inside, it doesn't propagate to outside code (hence doesnt close)*/}
           <div
           className={isMobile?
-            "absolute bottom-0 left-0 w-full h-2/5 bg-white shadow-lg p-4 border-t border-gray-300 overflow-y-auto z-50 rounded-t-2xl"  //bottom border for mobile
-            :"absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50" //side for pc
+            "absolute bottom-0 left-0 w-full h-2/5  bg-white shadow-lg p-4 border-t border-gray-300 overflow-y-auto z-50 rounded-t-2xl"  //bottom border for mobile
+            :"absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50"
             }
             onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside the panel
-            style={isMobile? {touchAction: 'pan-y'} : {}} // allow y panning on mobile
           >
             {/* drag handle for mobile */}
             {isMobile && (
