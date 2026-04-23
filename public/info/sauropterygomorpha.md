@@ -1,3 +1,5 @@
+The image above is of Plesiosaurus, the most famous of a the diverse aquatic clade that is Sauroptergomorpha.
+
 Sauropterygians, Ichtyosaurs, and Thalattosaurs placement in the reptile tree has also been complex. They have been grouped separaetly and together multiple times within Pantestudines, or even basal to the entirity of Reptilia for Ichthys.
 
 Other theories propose Sauropterygins to be closely related to Turtles, due to basal members of the group having armoured bodies, but This cladogram follows the work of Simões et al (2022) and Wolniewicz et al (2023). These are morphological studies with complex Baysian algorithms used to sort the tree.

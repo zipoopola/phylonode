@@ -43,8 +43,8 @@ const flatData = [
                         { name: 'Myllokunmingia', parent: 'Craniates', age: 518, ageEnd: 0, image: 'images/mylo.png', info:''  },
                         { name: 'Vertebrates', parent: 'Craniates', age: 0, image: '', info:''  },
                             { name: 'Cyclostomi', parent: 'Vertebrates', age: 0, image: '', info:''  },
-                                { name: 'Hagfish', parent: 'Cyclostomi', age: 0, image: '', info:''  },
-                                { name: 'Lamprey', parent: 'Cyclostomi', age: 0, image: '', info:''  },    
+                                { name: 'Hagfish', parent: 'Cyclostomi', age: 311, image: 'images/hagfish.jpg', info:''  },
+                                { name: 'Lamprey', parent: 'Cyclostomi', age: 0, image: 'images/lamprey.jpg', info:''  },    
                             { name: 'PanGnathostomata', parent: 'Vertebrates', age: 0, image: '', info:''  },
                                 { name: 'Heterostracomorphii', parent: 'PanGnathostomata', age: 0, image: '', info:''  },
                                     { name: 'Astraspsis', parent: 'Heterostracomorphii', age: 467, ageEnd: 433, image: 'images/astraspis.jpg', info:''  },
@@ -56,7 +56,7 @@ const flatData = [
                                 { name: 'Osteostraci', parent: 'PanGnathostomata', age: 433, ageEnd: 359, image: 'images/osteostraci.png', info:''  },
                                 { name: 'Placodermi', parent: 'PanGnathostomata', age: 0, image: '', info:''  },
                                     { name: 'Antiarcha', parent: 'Placodermi', age: 426, ageEnd: 359, image: 'images/antiarcha.jpg', info:''  },
-                                    { name: 'Arthrodira', parent: 'Placodermi', age: 419, ageEnd: 359, image: '', info:''  },
+                                    { name: 'Arthrodira', parent: 'Placodermi', age: 419, ageEnd: 359, image: 'images/arthrodira.jpg', info:'info/arthrodira.md'  },
                                     { name: 'CrownGnathostomata', parent: 'Placodermi',  rank:"clade II", age: 0, image: '', info:''  },
                                         { name: 'Cartilaginous fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
                                             { name: 'Spiny "sharks"', parent: 'Cartilaginous fishes', age: 439, ageEnd: 284, image: '', info:''  },
@@ -93,7 +93,7 @@ const flatData = [
                                                                                     { name: 'Marine reptile complex', parent: 'Archosauromorpha', age: 261, ageEnd: 66, image: '', info:''},
                                                                                         { name: 'Thalattosauria', parent: 'Marine reptile complex', age: 250, ageEnd: 212, image: '', info:''}, //possibly slightly later (start and end)
                                                                                         { name: 'Ichthyosauromorpha', parent: 'Marine reptile complex', age: 257, ageEnd: 90, image: '', info:''},
-                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 251, ageEnd: 66, image: '', info:'info/sauropterygomorpha.md'},
+                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 251, ageEnd: 66, image: 'images/sauropterygomorpha.jpg', info:'info/sauropterygomorpha.md'},
                                                                                     { name: 'CrownArchosauromorpha', parent: 'Archosauromorpha', age: 264, image: '', info:''},
 
 
