@@ -384,7 +384,7 @@ return (
           {/* Sidebar panel charactersitics, when clicked inside, it doesn't propagate to outside code (hence doesnt close)*/}
           <div
           classname={isMobile?
-            "absolute bottom-0 left-0 w-full h-0.4 bg-white shadow-lg p-4 border-t border-gray-300 overflow-y-auto z-50 rounded-t-2xl"  //bottom border for mobile
+            "absolute bottom-0 left-0 w-full h-2/5 bg-white shadow-lg p-4 border-t border-gray-300 overflow-y-auto z-50 rounded-t-2xl"  //bottom border for mobile
             :"absolute right-0 top-0 h-full w-64 bg-white shadow-lg p-4 border-l border-gray-300 overflow-y-auto z-50"
             }
             onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside the panel
