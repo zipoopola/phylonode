@@ -239,7 +239,7 @@ useEffect(() => {
   }
   return () => {
     document.body.style.overflow = '';    //restored touch ability when infoNode not open
-    if (el) el.style.touchAction = = '';
+    if (el) el.style.touchAction = '';
   };
 }, [infoNode]);
 
