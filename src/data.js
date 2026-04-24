@@ -78,23 +78,31 @@ const flatData = [
                                                     { name: 'Lungfish', parent: 'Rhipidistia', age: 415, image: 'images/lungfish.jpg', info:''  },
                                                     { name: 'Tetrapodomorpha', parent: 'Rhipidistia', age: 409,rank:"clade V", image: 'images/tiktaalik.jpg', info:'info/tetrapodomorpha.md'},
                                                         { name: 'Tetrapods', parent: 'Tetrapodomorpha', age: 372, image: '', info:''  },
-                                                            { name: 'Anamniota', parent: 'Tetrapods',rank:"clade VI", age: 0, image: '', info:''  }, //incl diadectomorpha
-                                                            { name: 'Amniota', parent: 'Tetrapods',rank:"clade VI", age: 0, image: '', info:''  },
-                                                                { name: 'Synapsida', parent: 'Amniota',rank:"clade VII", age: 0, image: '', info:''  },
-                                                                { name: 'Sauropsida', parent: 'Amniota',rank:"clade VII", age: 316, image: '', info:''  },
-                                                                    { name: 'Parareptilia', parent: 'Sauropsida', age: 306, ageEnd: 201, image: '', info:''  }, 
-                                                                    { name: 'Eureptilia', parent: 'Sauropsida', age: 0, image: '', info:''  },
-                                                                        { name: 'Other Reptiles', parent: 'Eureptilia', age: 314, ageEnd: 247, image: '', info:''  }, //left as a note (top age can be anywehre from 307 to 314 check it fits within parents)
-                                                                        { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
-                                                                            { name: 'Lepidosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 252, image: '', info:''  }, //check age
-                                                                            { name: 'Archelosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 269, image: '', info:'info/archelosauria.md'},
-                                                                                { name: 'Pantestudines', parent: 'Archelosauria', age: 0, image: '', info:''},
-                                                                                { name: 'Archosauromorpha', parent: 'Archelosauria', age: 267, image: '', info:''},
-                                                                                    { name: 'Marine reptile complex', parent: 'Archosauromorpha', age: 261, ageEnd: 66, image: '', info:''},
-                                                                                        { name: 'Thalattosauria', parent: 'Marine reptile complex', age: 250, ageEnd: 212, image: '', info:''}, //possibly slightly later (start and end)
-                                                                                        { name: 'Ichthyosauromorpha', parent: 'Marine reptile complex', age: 257, ageEnd: 90, image: '', info:''},
-                                                                                        { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 251, ageEnd: 66, image: 'images/sauropterygomorpha.jpg', info:'info/sauropterygomorpha.md'},
-                                                                                    { name: 'CrownArchosauromorpha', parent: 'Archosauromorpha', age: 264, image: '', info:''},
+                                                            { name: 'Temnospondyls', parent: 'Tetrapods', age: 0, image: '', info:''  },
+                                                                { name: 'Lissamphibia', parent: 'Temnospondyls', age: 0, image: '', info:''  },
+                                                                    { name: 'Caecilians', parent: 'Lissamphibia', age: 0, image: '', info:''  },
+                                                                    { name: 'Batrachia', parent: 'Lissamphibia', age: 0, image: '', info:''  }, 
+                                                                        { name: 'Frogs', parent: 'Batrachia', age: 0, image: '', info:''  }, 
+                                                                        { name: 'Salamanders', parent: 'Batrachia', age: 0, image: '', info:''  }, 
+                                                                { name: 'Other Temnospondyls', parent: 'Temnospondyls', age: 0, image: '', info:''  }, 
+                                                            { name: 'Reptiliomorpha', parent: 'Tetrapods', age: 0, image: '', info:''  }, //incl diadectomorpha
+                                                                { name: 'Lemnospondyls', parent: 'Reptiliomorpha', age: 0, image: '', info:''  },        
+                                                                { name: 'Amniota', parent: 'Reptiliomorpha',rank:"clade VI", age: 0, image: '', info:''  },
+                                                                    { name: 'Synapsida', parent: 'Amniota',rank:"clade VII", age: 0, image: '', info:''  },
+                                                                    { name: 'Sauropsida', parent: 'Amniota',rank:"clade VII", age: 316, image: '', info:''  },
+                                                                        { name: 'Parareptilia', parent: 'Sauropsida', age: 306, ageEnd: 201, image: '', info:''  }, 
+                                                                        { name: 'Eureptilia', parent: 'Sauropsida', age: 0, image: '', info:''  },
+                                                                            { name: 'Other Reptiles', parent: 'Eureptilia', age: 314, ageEnd: 247, image: '', info:''  }, //left as a note (top age can be anywehre from 307 to 314 check it fits within parents)
+                                                                            { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
+                                                                                { name: 'Lepidosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 252, image: '', info:''  }, //check age
+                                                                                { name: 'Archelosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 269, image: '', info:'info/archelosauria.md'},
+                                                                                    { name: 'Pantestudines', parent: 'Archelosauria', age: 0, image: '', info:''},
+                                                                                    { name: 'Archosauromorpha', parent: 'Archelosauria', age: 267, image: '', info:''},
+                                                                                        { name: 'Marine reptile complex', parent: 'Archosauromorpha', age: 261, ageEnd: 66, image: '', info:''},
+                                                                                            { name: 'Thalattosauria', parent: 'Marine reptile complex', age: 250, ageEnd: 212, image: 'images/thalattosaur.jpg', info:''}, //possibly slightly later (start and end)
+                                                                                            { name: 'Ichthyosauromorpha', parent: 'Marine reptile complex', age: 257, ageEnd: 90, image: 'images/ichthyosaur.jpg', info:''},
+                                                                                            { name: 'Sauropterygomorpha', parent: 'Marine reptile complex', age: 251, ageEnd: 66, image: 'images/sauropterygomorpha.jpg', info:'info/sauropterygomorpha.md'},
+                                                                                        { name: 'CrownArchosauromorpha', parent: 'Archosauromorpha', age: 264, image: '', info:''},
 
 
 

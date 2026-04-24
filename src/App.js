@@ -212,7 +212,7 @@ function App() {
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
-  const zoom= 0.4*window.innerWidth / 1200 + 0.2;  //initial zoom, 0.6 for the largest screens, or more zoomed out on smaller screens
+  const zoom= 0.35*window.innerWidth / 1200 + 0.24;  //initial zoom, 0.59 for the largest screens, or more zoomed out on smaller screens
 
   
   useEffect(() => {
