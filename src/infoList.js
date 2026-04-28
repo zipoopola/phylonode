@@ -13,6 +13,7 @@ export const infoNodes = new Set([
   "placozoa",
   "porifera",
   "sauropterygomorpha",
+  "squalomorphi",
   "stingrays",
   "tetrapodomorpha",
   "tunicates",

@@ -67,7 +67,11 @@ const flatData = [
                                                         { name: 'Electric rays', parent: 'True rays', age: 56, image: '', info:''  },
                                                         { name: 'Stingrays', parent: 'True rays', age: 145, image: 'images/stingrays.jpg', info:'info/stingrays.md'},
                                                     { name: 'True sharks', parent: 'Elasmobranchii', age: 0, image: '', info:''  },
-                                                        { name: 'Squalomorphi', parent: 'True sharks', age: 0, image: '', info:''  },
+                                                        { name: 'Squalomorphi', parent: 'True sharks', age: 190, image: '', info:'info/squalomorphi.md'},
+                                                            { name: 'Frilled Sharks', parent: 'Squalomorphi', age: 90, image: 'images/Frilled shark.jpg', info:''  },
+                                                            { name: 'Angel Sharks', parent: 'Squalomorphi', age: 164, image: 'images/angel shark.png', info:''  },
+                                                            { name: 'Sawsharks', parent: 'Squalomorphi', age: 85, image: '', info:''  },
+                                                            { name: 'Dogfish sharks', parent: 'Squalomorphi', age: 154, image: '', info:''  },
                                                         { name: 'Galeomorphi', parent: 'True sharks', age: 0, image: '', info:''  },
 
                                                     { name: 'Bony fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
