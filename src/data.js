@@ -78,10 +78,10 @@ const flatData = [
                                                                 { name: 'Wobbegong', parent: 'Orectolobiformes', age: 150, image: 'images/wobbegong.jpg', info:''},
                                                                 { name: 'Zebra shark', parent: 'Orectolobiformes', age: 0, image: '', info:''},
                                                                 { name: 'Whale shark', parent: 'Orectolobiformes', age: 20, image: '', info:''},
-                                                            { name: 'Lamniformes', parent: 'Lamniformes', age: 167, image: '', info:''},
-                                                                { name: 'Catshark', parent: 'Lamniformes', age: 154, image: '', info:''},
-                                                                { name: 'Tiger shark', parent: 'Lamniformes', age: 14, image: '', info:''},
-                                                                { name: 'Hammerhead shark', parent: 'Carcharhiniformes', age: 20, image: '', info:''},
+                                                            { name: 'Lamniformes', parent: 'Galeomorphi', age: 167, image: '', info:''},
+                                                                { name: 'Catshark', parent: 'Lamniformes', age: 154, image: 'images/catshark.jpg', info:''},
+                                                                { name: 'Tiger shark', parent: 'Lamniformes', age: 14, image: 'images/tiger shark.jpg', info:''},
+                                                                { name: 'Hammerhead shark', parent: 'Lamniformes', age: 20, image: 'images/hammerhead shark.jpg', info:''},
                                                             { name: 'Carcharhiniformes', parent: 'Galeomorphi', age: 167, image: '', info:''},
                                                                 { name: 'Goblin shark', parent: 'Carcharhiniformes', age: 0, image: '', info:''},
                                                                 { name: 'Megamouth shark', parent: 'Carcharhiniformes', age: 0, image: '', info:''},
@@ -90,11 +90,41 @@ const flatData = [
                                                                 { name: 'Megalodon', parent: 'Carcharhiniformes', age: 23, ageEnd: 4, image: '', info:''},
                                                                 { name: 'Great white shark', parent: 'Carcharhiniformes', age: 0, image: '', info:''},
 
-                                                    { name: 'Bony fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
-                                            { name: 'Ray-finned fish', parent: 'Bony fishes',rank:"clade IV", age: 0, image: '', info:''  },
-                                            { name: 'Lobe-finned fish', parent: 'Bony fishes',rank:"clade IV", age: 425, image: 'images/guiyu_oneiros.jpg', info:'info/guiyu_oneiros.md'  },
-                                                { name: 'Coelacanths', parent: 'Lobe-finned fish', age: 420, image: 'images/coelacanth.png', info:''  },
-                                                { name: 'Rhipidistia', parent: 'Lobe-finned fish', age: 0, image: 'images/rhipidistia.jpg', info:''  },
+                                        { name: 'Bony fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
+                                            { name: 'Ray-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: '', info:''  },
+                                                { name: 'Birchirs', parent: 'Ray-finned fishes', age: 100,  image: '', info:''  },
+                                                    { name: 'Sturgeons', parent: 'Ray-finned fishes', age: 97, image: '', info:''  },
+                                                        { name: 'Gars', parent: 'Ray-finned fishes', age: 152, image: '', info:''  },
+                                                            { name: 'Eels', parent: 'Ray-finned fishes', age: 97, image: '', info:''  },
+                                                                { name: 'Otocephala', parent: 'Ray-finned fishes', age: 230, image: '', info:''  },
+
+
+
+
+
+
+                                                                
+                                                                    { name: 'Salamanderfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                        { name: 'Protacanthopterygii', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                            { name: 'Pikes', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
+                                                                                { name: 'Salmon', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
+                                                                                { name: 'Trout', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
+                                                                            { name: 'Viperfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                                { name: 'Lizardfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                                    { name: 'Lanturnfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                                        { name: 'Lampri/Paracantho', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                                            { name: 'Lampripterygii', parent: 'Lampri/Paracantho', age: 0, image: '', info:''  },
+                                                                                                { name: 'Oarfish', parent: 'Lampripterygii', age: 0, image: '', info:''  },
+                                                                                                { name: 'Opahs', parent: 'Lampripterygii', age: 0, image: '', info:''  },
+                                                                                            { name: 'Paracanthopterygii', parent: 'Lampri/Paracantho', age: 0, image: '', info:''  },
+                                                                                                { name: 'Tube-eyes', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
+                                                                                                { name: 'Cod', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
+
+
+                                    
+                                            { name: 'Lobe-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: 'images/guiyu_oneiros.jpg', info:'info/guiyu_oneiros.md'  },
+                                                { name: 'Coelacanths', parent: 'Lobe-finned fishes', age: 420, image: 'images/coelacanth.png', info:''  },
+                                                { name: 'Rhipidistia', parent: 'Lobe-finned fishes', age: 0, image: 'images/rhipidistia.jpg', info:''  },
                                                     { name: 'Lungfish', parent: 'Rhipidistia', age: 415, image: 'images/lungfish.jpg', info:''  },
                                                     { name: 'Tetrapodomorpha', parent: 'Rhipidistia', age: 409,rank:"clade V", image: 'images/tiktaalik.jpg', info:'info/tetrapodomorpha.md'},
                                                         { name: 'Tetrapods', parent: 'Tetrapodomorpha', age: 372, image: '', info:''  },
