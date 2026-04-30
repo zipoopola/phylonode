@@ -29,7 +29,38 @@ function expandAllDescendants(node) {
 
 
 const renderCustomNode = (setInfoNode, onExpandAll, nodePositions) => ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
-// record node postion for search panning
+//early retuen for unnamed nodes, lines and dot in middle. If it has an age, this is displayed instead of the dot
+if (nodeDatum.unnamed) {
+  const hasAge = nodeDatum.age && nodeDatum.age !==0;
+  return (
+    <g onClick={toggleNode} style = {{ cursor: 'pointer'}}>
+      <line x1="0" y1="-55" x2="0" y2={hasAge? -15:55} stroke = "#4B5563" strokeWidth="2" />
+      {hasAge && (
+        <>
+          <line x1="0" y1="15" x2="0" y2="55" stroke = "#4B5563" strokeWidth="2" />
+          <foreignObject x="-40" y="-12" width="80" height="24">
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={{
+                textAlign: 'center',
+                color: '#6b7280',
+                fontSize: '11px',
+                fontWeight: 300,
+                lineHeight: '24px',
+              }}
+            >
+              {nodeDatum.ageEnd ? `${nodeDatum.age}–${nodeDatum.ageEnd} MYA` : `${nodeDatum.age} MYA`}
+            </div>
+          </foreignObject>
+        </>
+      )}
+      {!hasAge && <circle r="4" fill="#9ca3af" />}
+    </g>
+  );
+}
+
+
+  // record node postion for search panning
 if (hierarchyPointNode) {
   nodePositions.current[nodeDatum.name] = {x: hierarchyPointNode.x, y: hierarchyPointNode.y};
 }

@@ -93,7 +93,10 @@ const flatData = [
                                         { name: 'Bony fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
                                             { name: 'Ray-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: '', info:''  },
                                                 { name: 'Birchirs', parent: 'Ray-finned fishes', age: 100,  image: '', info:''  },
-                                                    { name: 'Sturgeons', parent: 'Ray-finned fishes', age: 97, image: '', info:''  },
+                                                { name: 'anon_1', parent: 'Ray-finned fishes', unnamed: true, age: 0,  image: '', info:''  },
+                                                    { name: 'Sturgeons', parent: 'anon_1', age: 97, image: '', info:''  },
+                                                    { name: 'anon_2', parent: 'anon_1', unnamed: true, age: 0,  image: '', info:''  },
+
                                                         { name: 'Gars', parent: 'Ray-finned fishes', age: 152, image: '', info:''  },
                                                             { name: 'Eels', parent: 'Ray-finned fishes', age: 97, image: '', info:''  },
                                                                 { name: 'Otocephala', parent: 'Ray-finned fishes', age: 230, image: '', info:''  },
