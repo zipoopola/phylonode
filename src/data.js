@@ -96,32 +96,78 @@ const flatData = [
                                                 { name: 'anon_1', parent: 'Ray-finned fishes', unnamed: true, age: 0,  image: '', info:''  },
                                                     { name: 'Sturgeons', parent: 'anon_1', age: 97, image: '', info:''  },
                                                     { name: 'anon_2', parent: 'anon_1', unnamed: true, age: 0,  image: '', info:''  },
-
-                                                        { name: 'Gars', parent: 'Ray-finned fishes', age: 152, image: '', info:''  },
-                                                            { name: 'Eels', parent: 'Ray-finned fishes', age: 97, image: '', info:''  },
-                                                                { name: 'Otocephala', parent: 'Ray-finned fishes', age: 230, image: '', info:''  },
-
-
-
+                                                        { name: 'Gars', parent: 'anon_2', age: 152, image: '', info:''  },
+                                                        { name: 'anon_3', parent: 'anon_2', unnamed: true, age: 0,  image: '', info:''  },
+                                                            { name: 'Eels', parent: 'anon_3', age: 97, image: '', info:''  },
+                                                            { name: 'anon_4', parent: 'anon_3', unnamed: true, age: 0,  image: '', info:''  },
+                                                                { name: 'Otocephala', parent: 'anon_4', age: 230, image: '', info:''  },
 
 
 
-                                                                
-                                                                    { name: 'Salamanderfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
-                                                                        { name: 'Protacanthopterygii', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
+                                                                { name: 'anon_5', parent: 'anon_4', unnamed: true, age: 0,  image: '', info:''  },
+                                                                    { name: 'Salamanderfish', parent:'anon_5', age: 0, image: '', info:''  },
+                                                                    { name: 'anon_6', parent: 'anon_5', unnamed: true, age: 0,  image: '', info:''  },
+                                                                        { name: 'Protacanthopterygii', parent: 'anon_6', age: 0, image: '', info:''  },
                                                                             { name: 'Pikes', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
                                                                                 { name: 'Salmon', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
                                                                                 { name: 'Trout', parent: 'Protacanthopterygii', age: 0, image: '', info:''  },
-                                                                            { name: 'Viperfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
-                                                                                { name: 'Lizardfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
-                                                                                    { name: 'Lanturnfish', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
-                                                                                        { name: 'Lampri/Paracantho', parent: 'Ray-finned fishes', age: 0, image: '', info:''  },
-                                                                                            { name: 'Lampripterygii', parent: 'Lampri/Paracantho', age: 0, image: '', info:''  },
-                                                                                                { name: 'Oarfish', parent: 'Lampripterygii', age: 0, image: '', info:''  },
-                                                                                                { name: 'Opahs', parent: 'Lampripterygii', age: 0, image: '', info:''  },
-                                                                                            { name: 'Paracanthopterygii', parent: 'Lampri/Paracantho', age: 0, image: '', info:''  },
-                                                                                                { name: 'Tube-eyes', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
-                                                                                                { name: 'Cod', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
+                                                                            { name: 'anon_7', parent: 'anon_6', unnamed: true, age: 0,  image: '', info:''  },    
+                                                                            { name: 'Viperfish', parent: 'anon_7', age: 0, image: '', info:''  },
+                                                                                { name: 'anon_8', parent: 'anon_7', unnamed: true, age: 0,  image: '', info:''  }, 
+                                                                                { name: 'Lizardfish', parent: 'anon_8', age: 0, image: '', info:''  },
+                                                                                    { name: 'anon_9', parent: 'anon_8', unnamed: true, age: 0,  image: '', info:''  }, 
+                                                                                    { name: 'Lanturnfish', parent: 'anon_9', age: 0, image: '', info:''  },
+                                                                                        { name: 'anon_10', parent: 'anon_9', unnamed: true, age: 0,  image: '', info:''  }, 
+                                                                                             { name: 'Percomorpha', parent: 'anon_10', age: 0,  image: '', info:''  }, 
+                                                                                                { name: 'Toadfish', parent: 'Percomorpha', age: 30,  image: '', info:''  }, 
+                                                                                                { name: 'anon_12', parent: 'Percomorpha', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                    { name: 'anon_14', parent: 'anon_12', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                        { name: 'gobies', parent: 'anon_14', age: 0,  image: '', info:''  },
+                                                                                                        { name: 'anon_22', parent: 'anon_14', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                            { name: 'Eupercaria', parent: 'anon_22', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                { name: 'Parrotfish', parent: 'Eupercaria', age: 0,  image: '', info:''  },
+                                                                                                                { name: 'anon_23', parent: 'Eupercaria', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                    { name: 'butterflyfish', parent: 'anon_23', age: 0,  image: '', info:''  },
+                                                                                                                    { name: 'anon_24', parent: 'anon_23', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                        { name: 'anglerfish', parent: 'anon_24', age: 0,  image: '', info:''  },
+                                                                                                                        { name: 'anon_25', parent: 'anon_24', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                            
+                                                                                                            
+                                                                                                            
+
+
+
+
+
+
+
+                                                                                                    { name: 'anon_13', parent: 'anon_12', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                        { name: 'anon_15', parent: 'anon_13', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                            { name: 'Mackerel', parent: 'anon_15', age: 0,  image: '', info:''  },
+                                                                                                            { name: 'Tuna', parent: 'anon_15', age: 0,  image: '', info:''  },
+                                                                                                        { name: 'anon_16', parent: 'anon_13', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                            { name: 'anon_17', parent: 'anon_16', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                { name: 'Seamoth', parent: 'anon_17', age: 0,  image: '', info:''  },
+                                                                                                                { name: 'Flying gurnard', parent: 'anon_17', age: 0,  image: '', info:''  },
+                                                                                                            { name: 'anon_18', parent: 'anon_16', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                { name: 'Trumpetfish', parent: 'anon_18', age: 0,  image: '', info:''  },
+                                                                                                                { name: 'anon_19', parent: 'anon_18', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                    { name: 'Ghost pipefish', parent: 'anon_19', age: 0,  image: '', info:''  },
+                                                                                                                    { name: 'anon_20', parent: 'anon_19', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                        { name: 'Pipefish', parent: 'anon_20', age: 0,  image: '', info:''  },
+                                                                                                                        { name: 'anon_21', parent: 'anon_20', unnamed: true, age: 0,  image: '', info:''  },
+                                                                                                                            { name: 'Seahorse', parent: 'anon_21', age: 0,  image: '', info:''  },
+                                                                                                                            { name: 'Seadragon', parent: 'anon_21', age: 0,  image: '', info:''  },                                                                                                    
+                                                                                            { name: 'anon_11', parent: 'anon_10', unnamed: true, age: 0,  image: '', info:''  }, 
+                                                                                                { name: 'Lampripterygii', parent: 'anon_11', age: 0, image: '', info:''  },
+                                                                                                    { name: 'Oarfish', parent: 'Lampripterygii', age: 0, image: '', info:''  },
+                                                                                                    { name: 'Opahs', parent: 'Lampripterygii', age: 0, image: '', info:''  },
+                                                                                                { name: 'Paracanthopterygii', parent: 'anon_11', age: 0, image: '', info:''  },
+                                                                                                    { name: 'Tube-eyes', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
+                                                                                                    { name: 'Cod', parent: 'Paracanthopterygii', age: 0, image: '', info:''  },
+
+
+
 
 
                                     
