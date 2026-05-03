@@ -189,7 +189,7 @@ const handleToggle = () => {
       {/* new shiny (i) icon appears for infonodes, all else have the basic version - this is updated by --- npm run infoList ---*/}
       {(() => {
         const hasInfo = infoNodes.has(nodeDatum.name.toLowerCase());
-        const r = hasInfo ? 13 : 10; //(i) icon is larger if it has info
+        const r = hasInfo ? 11 : 10; //(i) icon is larger if it has info
         return (
         <g
           onClick={(e) => {
@@ -198,15 +198,8 @@ const handleToggle = () => {
           }}
           style={{ cursor: 'pointer' }}
         >
-          <defs>                                         {/* shiny gradient defined, gradient between 3 colours, with the centre (most shiny) at upper left (0.35,0.35), grad covers 60% of element*/}
-            <radialGradient id="goldShine" cx="35%" cy="35%" r="60%">
-              <stop offset="0%" stopColor="#FEFBB0" />           {/* browner shine: FDE68A, F59E0B, B45309*/}
-              <stop offset="50%" stopColor="#EFC93D" />
-              <stop offset="100%" stopColor="#A67C00" />
-            </radialGradient>
-          </defs>
-           <circle cx="-60" cy={infoCircY} r={r} fill={hasInfo ? 'url(#goldShine)' : '#e5e7eb'} 
-           stroke={hasInfo ? "#7A6200":"#9ca3af"} strokeWidth={hasInfo ? 1.5:1}                   //border colour and thickness
+           <circle cx="-60" cy={infoCircY} r={r} fill={hasInfo ? '#7DD3FC' : '#e5e7eb'}    //position, size, and inner colour
+           stroke={hasInfo ? "#0284C7   ":"#9ca3af"} strokeWidth={hasInfo ? 1.5:1}                   //border colour and thickness
            />
            <foreignObject x="-65" y={infoiY} width="10" height="10">
           <div
@@ -215,7 +208,7 @@ const handleToggle = () => {
               fontFamily: 'vivaldi',
               fontSize: hasInfo ? '21px' : '18px',
               textAlign: 'center',
-              color: hasInfo? '#5C4800' : '#374151',
+              color: hasInfo? '#374151' : '#374151',
               fontWeight: 700,
               lineHeight: '10px',
               pointerEvents: 'none',
@@ -282,6 +275,15 @@ const handleExpandAll = (nodeDatum) => {
   }
 };
 
+const getActualTranslate = () => {                   //helper function so the app knows where it is not just where it has searched too
+  const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
+  if (!treeGroup) return translateRef.current;
+  const transform = treeGroup.getAttribute('transform');
+  const match = transform?.match(/translate\(([^,]+),([^)]+)\)/);
+  if (match) return { x: parseFloat(match[1]), y: parseFloat(match[2]) };
+  return translateRef.current;
+};
+
 //defined a function for panning. before this was within the search fn, but now it needs using from the sidebar breadcrumbs too, so to not replicate code:
 const panToNode = useCallback((node) => {          
   const pos = nodePositions.current[node.name];
@@ -289,8 +291,7 @@ const panToNode = useCallback((node) => {
     const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
     const duration = 1000; //ms
     const start = performance.now(); // starts a timer NOW at 0ms
-    const from = { ...translateRef.current }; //records the start point, the elipses keeps a state copy, rather than a reference to the variable
-
+    const from = getActualTranslate(); //records the start point
     //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
     if (animationRef.current) cancelAnimationFrame(animationRef.current)
 
@@ -373,6 +374,20 @@ return (
     {/* Full-width header */}
     <header className="w-full bg-white shadow-md py-2 px-8 flex items-center gap-6 sticky top-0 z-30 md:relative">      {/*sticky top-0 z-30 makes top stick, md:relative overrites this for larger screens*/}
       <h1 className="text-2xl font-bold text-gray-800">Phylogeny Visualiser</h1>
+
+    {/* Return home */}
+      <button
+        onClick={() => {
+          if (animationRef.current) cancelAnimationFrame(animationRef.current);
+          panToNode(treeData[0]);
+        }}
+        className="text-gray-500 hover:text-gray-800 transition-colors text-xl"
+        title="Return to start"
+      >
+        ⌂
+      </button>
+
+
     {/* Searchbar */}      
       <input
       type="text"
