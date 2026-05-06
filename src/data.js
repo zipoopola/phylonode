@@ -252,8 +252,8 @@ const flatData = [
                     { name: 'Flatworms', parent: 'Platytrochozoa', age: 0, image: '', info:'' },
                     { name: 'Lophotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
                         { name: 'Annelida', parent: 'Lophotrochozoa', age: 0, image: '', info:'' },
-                        { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: '', info:'' },
-                        { name: 'Kryptotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
+                        { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: 'images/early_mollusk.png', info:'' },
+                        { name: 'Kryptotrochozoa', parent: 'Lophotrochozoa', unnamed: true, age: 0, image: '', info:'' },
                             { name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
                             { name: 'Brachiopoda', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
 
