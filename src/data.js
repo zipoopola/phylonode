@@ -236,7 +236,26 @@ const flatData = [
 
 
         { name: 'Protostomia', parent: 'Bilateria',  rank:"superphylum", age: 558, image: '', info:'' },
-        
+            { name: 'Ecdysozoa', parent: 'Protostomia', age: 0, image: '', info:'' },
+                { name: 'Penis worms', parent: 'Ecdysozoa', age: 0, image: '', info:'' },
+                { name: 'nematodaIpanarthropoda', parent: 'Ecdysozoa', unnamed: true, age: 0, image: '', info:'' },
+                    { name: 'Nematodes', parent: 'nematodaIpanarthropoda', age: 0, image: '', info:'' },
+                    { name: 'Panarthropoda', parent: 'nematodaIpanarthropoda', age: 0, image: '', info:'' },
+                        { name: 'Tardigrades', parent: 'Panarthropoda', age: 0, image: '', info:'' },
+                        { name: 'Tactopoda', parent: 'Panarthropoda', unnamed: true, age: 0, image: '', info:'' },
+                            { name: 'Tardigrades', parent: 'Tactopoda', age: 0, image: '', info:'' },
+                            { name: 'Arthropods', parent: 'Tactopoda', age: 0, image: '', info:'' },
+
+            { name: 'Spiralia', parent: 'Protostomia', age: 0, image: '', info:'info/Spiralia.md' },
+                { name: 'Rotifers', parent: 'Spiralia', age: 0, image: '', info:'' },
+                { name: 'Platytrochozoa', parent: 'Spiralia', unnamed: true, age: 580, image: '', info:'' },
+                    { name: 'Flatworms', parent: 'Platytrochozoa', age: 0, image: '', info:'' },
+                    { name: 'Lophotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
+                        { name: 'Annelida', parent: 'Lophotrochozoa', age: 0, image: '', info:'' },
+                        { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: '', info:'' },
+                        { name: 'Kryptotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
+                            { name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
+                            { name: 'Brachiopoda', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
 
 
 

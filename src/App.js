@@ -227,6 +227,13 @@ const handleToggle = () => {
 
 const isMobile = window.innerWidth < 768; // is the user on mobile? (narrow screen)
 
+// const TREE_BOUNDS = {
+//   minX: -30000,
+//   maxX: 30000,
+//   minY: -2000,
+//   maxY: 80000,
+// };
+
 function App() {
   const [infoNode, setInfoNode] = useState(null);
   const [infoText, setInfoText] = useState('');
@@ -242,6 +249,110 @@ function App() {
   useEffect(() => {
   translateRef.current = translate;
   }, [translate]);       //keeps translate ref in sync
+
+//   useEffect(() => {
+//   const el = treeContainerRef.current;
+//   if (!el) return;
+
+//   let isDragging = false;
+//   let startX, startY, startTranslateX, startTranslateY;
+
+//   function getTransform() {
+//     const treeGroup = el.querySelector('.rd3t-g');
+//     if (!treeGroup) return { x: 0, y: 0 };
+//     const transform = treeGroup.getAttribute('transform');
+//     const match = transform?.match(/translate\(([^,]+),([^)]+)\)/);
+//     if (match) return { x: parseFloat(match[1]), y: parseFloat(match[2]) };
+//     return { x: 0, y: 0 };
+//   }
+
+//   function setTransform(x, y) {
+//     const treeGroup = el.querySelector('.rd3t-g');
+//     if (!treeGroup) return;
+//     const clamped = {
+//       x: Math.min(Math.max(x, TREE_BOUNDS.minX), TREE_BOUNDS.maxX),
+//       y: Math.min(Math.max(y, TREE_BOUNDS.minY), TREE_BOUNDS.maxY),
+//     };
+//     const transform = treeGroup.getAttribute('transform');
+//     treeGroup.setAttribute('transform',
+//       transform.replace(/translate\([^)]+\)/, `translate(${clamped.x},${clamped.y})`)
+//     );
+//     return clamped;
+//   }
+
+//   function onMouseDown(e) {
+//     isDragging = true;
+//     startX = e.clientX;
+//     startY = e.clientY;
+//     const pos = getTransform();
+//     startTranslateX = pos.x;
+//     startTranslateY = pos.y;
+//     el.style.cursor = 'grabbing';
+//   }
+
+//   function onMouseMove(e) {
+//     if (!isDragging) return;
+//     const dx = e.clientX - startX;
+//     const dy = e.clientY - startY;
+//     setTransform(startTranslateX + dx, startTranslateY + dy);
+//   }
+
+//   function onMouseUp(e) {
+//     if (!isDragging) return;
+//     isDragging = false;
+//     el.style.cursor = '';
+//     const dx = e.clientX - startX;
+//     const dy = e.clientY - startY;
+//     const clamped = setTransform(startTranslateX + dx, startTranslateY + dy);
+//     if (clamped) setTranslate(clamped); // sync back to React state
+//   }
+
+//   function onTouchStart(e) {
+//     if (e.touches.length !== 1) return;
+//     isDragging = true;
+//     startX = e.touches[0].clientX;
+//     startY = e.touches[0].clientY;
+//     const pos = getTransform();
+//     startTranslateX = pos.x;
+//     startTranslateY = pos.y;
+//   }
+
+//   function onTouchMove(e) {
+//     if (!isDragging || e.touches.length !== 1) return;
+//     e.preventDefault();
+//     const dx = e.touches[0].clientX - startX;
+//     const dy = e.touches[0].clientY - startY;
+//     setTransform(startTranslateX + dx, startTranslateY + dy);
+//   }
+
+//   function onTouchEnd(e) {
+//     if (!isDragging) return;
+//     isDragging = false;
+//     const touch = e.changedTouches[0];
+//     const dx = touch.clientX - startX;
+//     const dy = touch.clientY - startY;
+//     const clamped = setTransform(startTranslateX + dx, startTranslateY + dy);
+//     if (clamped) setTranslate(clamped);
+//   }
+
+//   el.addEventListener('mousedown', onMouseDown);
+//   el.addEventListener('mousemove', onMouseMove);
+//   el.addEventListener('mouseup', onMouseUp);
+//   el.addEventListener('mouseleave', onMouseUp);
+//   el.addEventListener('touchstart', onTouchStart, { passive: true });
+//   el.addEventListener('touchmove', onTouchMove, { passive: false });
+//   el.addEventListener('touchend', onTouchEnd);
+
+//   return () => {
+//     el.removeEventListener('mousedown', onMouseDown);
+//     el.removeEventListener('mousemove', onMouseMove);
+//     el.removeEventListener('mouseup', onMouseUp);
+//     el.removeEventListener('mouseleave', onMouseUp);
+//     el.removeEventListener('touchstart', onTouchStart);
+//     el.removeEventListener('touchmove', onTouchMove);
+//     el.removeEventListener('touchend', onTouchEnd);
+//   };
+// }, []);
 
   //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
   useEffect(() => {
@@ -413,6 +524,7 @@ return (
           data={treeData}
           orientation="vertical"
           zoomable 
+          // draggable={false} //disabling native pan cuz i will make my own with boundaries
           zoom={zoom}  
           scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
