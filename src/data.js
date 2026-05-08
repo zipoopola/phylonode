@@ -247,11 +247,23 @@ const flatData = [
                             { name: 'Arthropods', parent: 'Tactopoda', age: 0, image: '', info:'' },
 
             { name: 'Spiralia', parent: 'Protostomia', age: 0, image: '', info:'info/Spiralia.md' },
-                { name: 'Rotifers', parent: 'Spiralia', age: 0, image: '', info:'' },
+                { name: 'Rotifers', parent: 'Spiralia', age: 0, image: 'images/rotifer.jpg', info:'' },
                 { name: 'Platytrochozoa', parent: 'Spiralia', unnamed: true, age: 580, image: '', info:'' },
-                    { name: 'Flatworms', parent: 'Platytrochozoa', age: 0, image: '', info:'' },
+                    { name: 'Flatworms', parent: 'Platytrochozoa', age: 0, image: 'images/flatworm.jpg', info:'' },
                     { name: 'Lophotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
-                        { name: 'Annelida', parent: 'Lophotrochozoa', age: 0, image: '', info:'' },
+                        { name: 'Annelida', parent: 'Lophotrochozoa', age: 518, image: 'images/oldworm.jpg', info:'' },
+                            { name: 'Annelida1', parent: 'Annelida', age: 0, unnamed: true, image: '', info:'' },
+                                { name: 'Bobbit worms', parent: 'Annelida1', age: 0, image: 'images/bobbit worm.jpg', info:'' },
+                                { name: 'Ragworm', parent: 'Annelida1', age: 0, image: 'images/Ragworm.jpg', info:'' }, //related info node plankton worm
+                            { name: 'Annelida2', parent: 'Annelida', unnamed: true, age: 0, image: '', info:'' },
+                                { name: 'Annelida3', parent: 'Annelida2', unnamed: true, age: 0, image: '', info:'' },
+                                    { name: 'Tube worms', parent: 'Annelida3', age: 0, image: '', info:'' }, //incl. bone variants
+                                    { name: 'Feather duster worms', parent: 'Annelida3', age: 0, image: '', info:'' },
+                                { name: 'Annelida4', parent: 'Annelida2', unnamed: true, age: 0, image: '', info:'' },
+                                    { name: 'Leeches', parent: 'Annelida4', age: 0, image: '', info:'' },
+                                    { name: 'Earthworms', parent: 'Annelida4', age: 0, image: '', info:'' },
+
+
                         { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: 'images/early_mollusk.png', info:'' },
                         { name: 'Kryptotrochozoa', parent: 'Lophotrochozoa', unnamed: true, age: 0, image: '', info:'' },
                             { name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
