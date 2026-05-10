@@ -200,7 +200,7 @@ const flatData = [
 
 
                                     
-                                            { name: 'Lobe-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: 'images/guiyu_oneiros.jpg', info:'info/guiyu_oneiros.md'  },
+                                            { name: 'Lobe-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: 'images/guiyu_oneiros.jpg', info:'info/lobe-finned fishes.md'  },
                                                 { name: 'Coelacanths', parent: 'Lobe-finned fishes', age: 420, image: 'images/coelacanth.png', info:''  },
                                                 { name: 'Rhipidistia', parent: 'Lobe-finned fishes', age: 0, image: 'images/rhipidistia.jpg', info:''  },
                                                     { name: 'Lungfish', parent: 'Rhipidistia', age: 415, image: 'images/lungfish.jpg', info:''  },
@@ -250,24 +250,24 @@ const flatData = [
                 { name: 'Rotifers', parent: 'Spiralia', age: 0, image: 'images/rotifer.jpg', info:'' },
                 { name: 'Platytrochozoa', parent: 'Spiralia', unnamed: true, age: 580, image: '', info:'' },
                     { name: 'Flatworms', parent: 'Platytrochozoa', age: 0, image: 'images/flatworm.jpg', info:'' },
-                    { name: 'Lophotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 0, image: '', info:'' },
-                        { name: 'Annelida', parent: 'Lophotrochozoa', age: 518, image: 'images/oldworm.jpg', info:'' },
-                            { name: 'Annelida1', parent: 'Annelida', age: 0, unnamed: true, image: '', info:'' },
+                    { name: 'Lophotrochozoa', parent: 'Platytrochozoa', unnamed: true, age: 536, image: '', info:'' },
+                        { name: 'True worms', parent: 'Lophotrochozoa', age: 518, image: 'images/oldworm.jpg', info:'' },
+                            { name: 'Annelida1', parent: 'True worms', age: 0, unnamed: true, image: '', info:'' },
                                 { name: 'Bobbit worms', parent: 'Annelida1', age: 0, image: 'images/bobbit worm.jpg', info:'' },
-                                { name: 'Ragworm', parent: 'Annelida1', age: 0, image: 'images/Ragworm.jpg', info:'' }, //related info node plankton worm
-                            { name: 'Annelida2', parent: 'Annelida', unnamed: true, age: 0, image: '', info:'' },
+                                { name: 'Ragworms', parent: 'Annelida1', age: 0, image: 'images/ragworm.jpg', info:'' }, //related info node plankton worm
+                            { name: 'Annelida2', parent: 'True worms', unnamed: true, age: 0, image: '', info:'' },
                                 { name: 'Annelida3', parent: 'Annelida2', unnamed: true, age: 0, image: '', info:'' },
-                                    { name: 'Tube worms', parent: 'Annelida3', age: 0, image: '', info:'' }, //incl. bone variants
-                                    { name: 'Feather duster worms', parent: 'Annelida3', age: 0, image: '', info:'' },
-                                { name: 'Annelida4', parent: 'Annelida2', unnamed: true, age: 0, image: '', info:'' },
-                                    { name: 'Leeches', parent: 'Annelida4', age: 0, image: '', info:'' },
-                                    { name: 'Earthworms', parent: 'Annelida4', age: 0, image: '', info:'' },
+                                    { name: 'Tube worms', parent: 'Annelida3', age: 0, image: 'images/tube worms.jpg', info:'info/tube worms.md' },
+                                    { name: 'Feather duster worms', parent: 'Annelida3', age: 0, image: 'images/feather duster worm.jpg', info:'' },
+                                { name: 'Annelida4', parent: 'Annelida2', unnamed: true, age: 435, image: '', info:'' },
+                                    { name: 'Leeches', parent: 'Annelida4', age: 0, image: 'images/leech.jpg', info:'' },
+                                    { name: 'Earthworms', parent: 'Annelida4', age: 0, image: 'images/earthworm.png', info:'' },
 
 
                         { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: 'images/early_mollusk.png', info:'' },
-                        { name: 'Kryptotrochozoa', parent: 'Lophotrochozoa', unnamed: true, age: 0, image: '', info:'' },
-                            { name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
-                            { name: 'Brachiopoda', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
+                        //{ name: 'Kryptotrochozoa', parent: 'Lophotrochozoa', unnamed: true, age: 0, image: '', info:'' },
+                            //{ name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
+                            { name: 'Brachiopoda', parent: 'Lophotrochozoa', age: 0, image: 'images/brachiopod.jpg', info:'' },
 
 
 

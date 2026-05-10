@@ -227,13 +227,6 @@ const handleToggle = () => {
 
 const isMobile = window.innerWidth < 768; // is the user on mobile? (narrow screen)
 
-// const TREE_BOUNDS = {
-//   minX: -30000,
-//   maxX: 30000,
-//   minY: -2000,
-//   maxY: 80000,
-// };
-
 function App() {
   const [infoNode, setInfoNode] = useState(null);
   const [infoText, setInfoText] = useState('');
@@ -245,114 +238,9 @@ function App() {
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
   const zoom= 0.35*window.innerWidth / 1200 + 0.24;  //initial zoom, 0.59 for the largest screens, or more zoomed out on smaller screens
 
-  
   useEffect(() => {
   translateRef.current = translate;
   }, [translate]);       //keeps translate ref in sync
-
-//   useEffect(() => {
-//   const el = treeContainerRef.current;
-//   if (!el) return;
-
-//   let isDragging = false;
-//   let startX, startY, startTranslateX, startTranslateY;
-
-//   function getTransform() {
-//     const treeGroup = el.querySelector('.rd3t-g');
-//     if (!treeGroup) return { x: 0, y: 0 };
-//     const transform = treeGroup.getAttribute('transform');
-//     const match = transform?.match(/translate\(([^,]+),([^)]+)\)/);
-//     if (match) return { x: parseFloat(match[1]), y: parseFloat(match[2]) };
-//     return { x: 0, y: 0 };
-//   }
-
-//   function setTransform(x, y) {
-//     const treeGroup = el.querySelector('.rd3t-g');
-//     if (!treeGroup) return;
-//     const clamped = {
-//       x: Math.min(Math.max(x, TREE_BOUNDS.minX), TREE_BOUNDS.maxX),
-//       y: Math.min(Math.max(y, TREE_BOUNDS.minY), TREE_BOUNDS.maxY),
-//     };
-//     const transform = treeGroup.getAttribute('transform');
-//     treeGroup.setAttribute('transform',
-//       transform.replace(/translate\([^)]+\)/, `translate(${clamped.x},${clamped.y})`)
-//     );
-//     return clamped;
-//   }
-
-//   function onMouseDown(e) {
-//     isDragging = true;
-//     startX = e.clientX;
-//     startY = e.clientY;
-//     const pos = getTransform();
-//     startTranslateX = pos.x;
-//     startTranslateY = pos.y;
-//     el.style.cursor = 'grabbing';
-//   }
-
-//   function onMouseMove(e) {
-//     if (!isDragging) return;
-//     const dx = e.clientX - startX;
-//     const dy = e.clientY - startY;
-//     setTransform(startTranslateX + dx, startTranslateY + dy);
-//   }
-
-//   function onMouseUp(e) {
-//     if (!isDragging) return;
-//     isDragging = false;
-//     el.style.cursor = '';
-//     const dx = e.clientX - startX;
-//     const dy = e.clientY - startY;
-//     const clamped = setTransform(startTranslateX + dx, startTranslateY + dy);
-//     if (clamped) setTranslate(clamped); // sync back to React state
-//   }
-
-//   function onTouchStart(e) {
-//     if (e.touches.length !== 1) return;
-//     isDragging = true;
-//     startX = e.touches[0].clientX;
-//     startY = e.touches[0].clientY;
-//     const pos = getTransform();
-//     startTranslateX = pos.x;
-//     startTranslateY = pos.y;
-//   }
-
-//   function onTouchMove(e) {
-//     if (!isDragging || e.touches.length !== 1) return;
-//     e.preventDefault();
-//     const dx = e.touches[0].clientX - startX;
-//     const dy = e.touches[0].clientY - startY;
-//     setTransform(startTranslateX + dx, startTranslateY + dy);
-//   }
-
-//   function onTouchEnd(e) {
-//     if (!isDragging) return;
-//     isDragging = false;
-//     const touch = e.changedTouches[0];
-//     const dx = touch.clientX - startX;
-//     const dy = touch.clientY - startY;
-//     const clamped = setTransform(startTranslateX + dx, startTranslateY + dy);
-//     if (clamped) setTranslate(clamped);
-//   }
-
-//   el.addEventListener('mousedown', onMouseDown);
-//   el.addEventListener('mousemove', onMouseMove);
-//   el.addEventListener('mouseup', onMouseUp);
-//   el.addEventListener('mouseleave', onMouseUp);
-//   el.addEventListener('touchstart', onTouchStart, { passive: true });
-//   el.addEventListener('touchmove', onTouchMove, { passive: false });
-//   el.addEventListener('touchend', onTouchEnd);
-
-//   return () => {
-//     el.removeEventListener('mousedown', onMouseDown);
-//     el.removeEventListener('mousemove', onMouseMove);
-//     el.removeEventListener('mouseup', onMouseUp);
-//     el.removeEventListener('mouseleave', onMouseUp);
-//     el.removeEventListener('touchstart', onTouchStart);
-//     el.removeEventListener('touchmove', onTouchMove);
-//     el.removeEventListener('touchend', onTouchEnd);
-//   };
-// }, []);
 
   //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
   useEffect(() => {
@@ -361,6 +249,28 @@ function App() {
   const handler = (e) => e.preventDefault();
   el.addEventListener('wheel', handler, { passive: false });
   return () => el.removeEventListener('wheel', handler);
+}, []);
+
+// white rectangle behind tree so dark background shows when panning away - vignette
+useEffect(() => {
+  // const timer = setTimeout(() => { //a small delay is required as the nodes take a second to load in
+    const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
+    if (!treeGroup) return;
+
+    const bounds = getTreeBounds();
+    const padding = 1000;
+
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', bounds.minX - padding);
+    rect.setAttribute('y', bounds.minY - padding);
+    rect.setAttribute('width', bounds.maxX - bounds.minX + padding * 2);
+    rect.setAttribute('height', bounds.maxY - bounds.minY + padding * 2);
+    rect.setAttribute('fill', 'white');
+    rect.setAttribute('rx', '20');
+
+    treeGroup.insertBefore(rect, treeGroup.firstChild);
+  // }, 1000);
+  // return () => clearTimeout(timer);
 }, []);
 
 useEffect(() => {
@@ -393,6 +303,17 @@ const getActualTranslate = () => {                   //helper function so the ap
   const match = transform?.match(/translate\(([^,]+),([^)]+)\)/);
   if (match) return { x: parseFloat(match[1]), y: parseFloat(match[2]) };
   return translateRef.current;
+};
+
+const getTreeBounds = () => {               //helper function for tree bounds based on maximum node positions
+  const positions = Object.values(nodePositions.current);
+  if (positions.length === 0) return { minX: -2000, maxX: 2000, minY: -200, maxY: 10000 };
+  return {
+    minX: Math.min(...positions.map(p => p.x)),
+    maxX: Math.max(...positions.map(p => p.x)),
+    minY: Math.min(...positions.map(p => p.y)),
+    maxY: Math.max(...positions.map(p => p.y)),
+  };
 };
 
 //defined a function for panning. before this was within the search fn, but now it needs using from the sidebar breadcrumbs too, so to not replicate code:
@@ -519,7 +440,7 @@ return (
 
     <main className="flex-grow overflow-auto bg-gray-100 p-1 relative">
       <div className="bg-white rounded-xl shadow-xl p-1 w-full min-w-[800px] min-h-[1200px] overflow-auto"> {/*I changed this to be longer scrolling and reduced padding for mobile experience*/}
-        <div className="w-full h-[500vh] overflow-auto" ref={treeContainerRef}> {/*and changed this to always cover the scrolled section*/}
+        <div className="w-full h-[500vh] rounded-xl shadow-xl overflow-auto bg-gray-900" ref={treeContainerRef}> {/*and changed this to always cover the scrolled section*/}
         <Tree
           data={treeData}
           orientation="vertical"
