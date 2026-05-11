@@ -11,6 +11,7 @@ export const infoNodes = new Set([
   "heterostraci",
   "lobe-finned fishes",
   "monkey",
+  "panarthropoda",
   "placozoa",
   "porifera",
   "sauropterygomorpha",

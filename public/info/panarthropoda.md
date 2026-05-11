@@ -1,0 +1,1 @@
+Aysheaia is depicted here as an early member of the Lobopodians, a paraphyletic group that surrounds the Panarthropods, with some members being stem-Panarthropods, stem-Velvet worms, and stem-Arthropods. This animal had 10 body segments, with claws at the end of its legs and spines over parts of its body. It doesn't clearly have jaws, antennae, and may even have no eyes.

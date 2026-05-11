@@ -240,10 +240,10 @@ const flatData = [
                 { name: 'Penis worms', parent: 'Ecdysozoa', age: 0, image: '', info:'' },
                 { name: 'nematodaIpanarthropoda', parent: 'Ecdysozoa', unnamed: true, age: 0, image: '', info:'' },
                     { name: 'Nematodes', parent: 'nematodaIpanarthropoda', age: 0, image: '', info:'' },
-                    { name: 'Panarthropoda', parent: 'nematodaIpanarthropoda', age: 0, image: '', info:'' },
-                        { name: 'Tardigrades', parent: 'Panarthropoda', age: 0, image: '', info:'' },
+                    { name: 'Panarthropoda', parent: 'nematodaIpanarthropoda', age: 508, image: 'images/panarthropoda.png', info:'info/panarthropoda.md' },
+                        { name: 'Velvet Worms', parent: 'Panarthropoda', age: 0, image: '', info:'' },
                         { name: 'Tactopoda', parent: 'Panarthropoda', unnamed: true, age: 0, image: '', info:'' },
-                            { name: 'Tardigrades', parent: 'Tactopoda', age: 0, image: '', info:'' },
+                            { name: 'Tardigrades', parent: 'Tactopoda', age: 500, image: 'images/tardigrade.jpg', info:'' },
                             { name: 'Arthropods', parent: 'Tactopoda', age: 0, image: '', info:'' },
 
             { name: 'Spiralia', parent: 'Protostomia', age: 0, image: '', info:'info/Spiralia.md' },

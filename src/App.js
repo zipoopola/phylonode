@@ -6,6 +6,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';       // GitHub Flavored Markdown (for lists, tables, etc.)
 import remarkBreaks from 'remark-breaks'; // For line breaks with single newlines
 import { infoNodes } from './infoList';
+import Fuse from 'fuse.js'; // better search function
+
 
 
 const treeData = [buildTree(data)];   //define data
@@ -253,24 +255,32 @@ function App() {
 
 // white rectangle behind tree so dark background shows when panning away - vignette
 useEffect(() => {
-  // const timer = setTimeout(() => { //a small delay is required as the nodes take a second to load in
-    const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
-    if (!treeGroup) return;
+  const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
+  if (!treeGroup) return;
 
-    const bounds = getTreeBounds();
-    const padding = 1000;
+  const bounds = getTreeBounds();
+  const padding = 5500;
 
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    rect.setAttribute('x', bounds.minX - padding);
-    rect.setAttribute('y', bounds.minY - padding);
-    rect.setAttribute('width', bounds.maxX - bounds.minX + padding * 2);
-    rect.setAttribute('height', bounds.maxY - bounds.minY + padding * 2);
-    rect.setAttribute('fill', 'white');
-    rect.setAttribute('rx', '20');
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  defs.innerHTML = `
+    <radialGradient id="fadeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="55%" stop-color="white" stop-opacity="1"/>   
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  `;
 
-    treeGroup.insertBefore(rect, treeGroup.firstChild);
-  // }, 1000);
-  // return () => clearTimeout(timer);
+  //change how far out the fade starts with the first number - basically changes how large an area the fade is over (for a given size)
+  //it feels like less than 40% fades too slowly
+
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', bounds.minX - padding);
+  rect.setAttribute('y', bounds.minY - padding);
+  rect.setAttribute('width', bounds.maxX - bounds.minX + padding * 2);
+  rect.setAttribute('height', bounds.maxY - bounds.minY + padding * 2);
+  rect.setAttribute('fill', 'url(#fadeGrad)');
+
+  treeGroup.insertBefore(defs, treeGroup.firstChild);
+  treeGroup.insertBefore(rect, treeGroup.firstChild);
 }, []);
 
 useEffect(() => {
@@ -362,32 +372,39 @@ useEffect(() => {
   }
 }, [infoNode]);
 
-//search function
+//search function using Fuse Library
 useEffect(() => {
     if (!searchQuery) return;
     const delay = setTimeout(() => {     //delay to not debounce     
-      const lowerQuery = searchQuery.toLowerCase();
-
-      function findNode(node) {
-        if (node.name.toLowerCase().includes(lowerQuery)) return node;
-        if (node.children) {
-          for (const child of node.children) {
-            const result = findNode(child);
-            if (result) return result;
-          }
+      function findNode(node, targetName) {
+      if (node.name === targetName) return node;
+      if (node.children) {
+        for (const child of node.children) {
+          const result = findNode(child, targetName);
+          if (result) return result;
         }
-        return null;
       }
+      return null;
+    }
 
-      const matchedNode = findNode(treeData[0]);
-      if (matchedNode) {
-        if (!isMobile) setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
-        panToNode(matchedNode); //this is the whole function to pan to the named node
-      }
-    }, 500); // 0.5 second    *** set to zero to bring back debounce
-    return () => clearTimeout(delay); // cancel if user types again before 1s is up     
+    const allNodes = Object.keys(nodePositions.current).map(name => ({ name }));
+    const fuse = new Fuse(allNodes, {
+      keys: ['name'],
+      threshold: 0.5,   //0 is strict, 1 is loose
+      ignoreLocation: true,
+    });
 
-  }, [searchQuery, panToNode]);
+    const results = fuse.search(searchQuery);
+    const matchedNode = results.length > 0 ? findNode(treeData[0], results[0].item.name) : null;
+
+    if (matchedNode) {
+      if (!isMobile) setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
+      panToNode(matchedNode); //this is the whole function to pan to the named node
+    }
+  }, 500); // 0.5 second    *** set to zero to bring back debounce
+  return () => clearTimeout(delay); // cancel if user types again before 1s is up     
+
+}, [searchQuery, panToNode]);
 
 function findPath(node, targetName, path = []){
   const currentPath = [...path, node];
