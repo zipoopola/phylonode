@@ -1,1 +1,1 @@
-Anomalocaris survived from 520-499 MYA, the number below the image is for the wider radiodont group.
+Anomalocaris's wider group, the Radiodonts survived from 520-400 MYA, the number below the image is for Anomalocaris.

@@ -243,15 +243,18 @@ const flatData = [
                     { name: 'Panarthropoda', parent: 'nematodaIpanarthropoda', age: 508, image: 'images/panarthropoda.jpg', info:'info/panarthropoda.md' },
                         { name: 'Tardigrades', parent: 'Panarthropoda', age: 500, image: 'images/tardigrade.jpg', info:'' },
                         { name: 'Antennapoda', parent: 'Panarthropoda', unnamed: true, age: 0, image: '', info:'' },
-                            { name: 'Velvet Worms', parent: 'Antennapoda', age: 0, image: '', info:'' },
+                            { name: 'Velvet Worms', parent: 'Antennapoda', age: 309, image: 'images/velvet_worm.png', info:'' },
                             { name: 'arthronode1', parent: 'Antennapoda',unnamed: true, age: 0, image: '', info:'' },
                                 { name: 'Pambdelurion', parent: 'arthronode1', age: 521, image: 'images/pambdelurion.png', info:'' },
                                 { name: 'Radio_arthro', parent: 'arthronode1',unnamed: true, age: 0, image: '', info:'' },
-                                    { name: 'Anomalocaris', parent: 'Radio_arthro', age: 520, ageEnd: 400, image: 'images/anomalocaris.jpg', info:'info/anomalocaris.md' },
-                                    { name: 'Arthropods', parent: 'Radio_arthro', age: 0, image: '', info:'' },
-                                        { name: 'Crown arthropoda', parent: 'Arthropods', age: 0, image: '', info:'' },
-                                        { name: 'Fengzhengia', parent: 'Arthropods', age: 0, image: 'images/fengzhengia.jpg', info:'' },
+                                    { name: 'Anomalocaris', parent: 'Radio_arthro', age: 520, ageEnd: 499, image: 'images/anomalocaris.jpg', info:'info/anomalocaris.md' },
+                                    { name: 'Arthropods', parent: 'Radio_arthro', age: 0, image: 'images/fengzhengia.jpg', info:'' }, //Fengzhengia
+                                        { name: 'Chelicerates', parent: 'Arthropods', age: 519, image: 'images/chelicerates.png', info:'' },
+                                        { name: 'Mandibulates', parent: 'Arthropods', age: 0, image: '', info:'' },
 
+
+
+                                        
             { name: 'Spiralia', parent: 'Protostomia', age: 0, image: '', info:'info/Spiralia.md' },
                 { name: 'Rotifers', parent: 'Spiralia', age: 0, image: 'images/rotifer.jpg', info:'' },
                 { name: 'Platytrochozoa', parent: 'Spiralia', unnamed: true, age: 580, image: '', info:'' },
