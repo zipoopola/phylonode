@@ -244,12 +244,18 @@ const flatData = [
                         { name: 'Tardigrades', parent: 'Panarthropoda', age: 500, image: 'images/tardigrade.jpg', info:'' },
                         { name: 'Antennapoda', parent: 'Panarthropoda', unnamed: true, age: 0, image: '', info:'' },
                             { name: 'Velvet Worms', parent: 'Antennapoda', age: 309, image: 'images/velvet_worm.png', info:'' },
-                            { name: 'arthronode1', parent: 'Antennapoda',unnamed: true, age: 0, image: '', info:'' },
-                                { name: 'Pambdelurion', parent: 'arthronode1', age: 521, image: 'images/pambdelurion.png', info:'' },
-                                { name: 'Radio_arthro', parent: 'arthronode1',unnamed: true, age: 0, image: '', info:'' },
-                                    { name: 'Anomalocaris', parent: 'Radio_arthro', age: 520, ageEnd: 499, image: 'images/anomalocaris.jpg', info:'info/anomalocaris.md' },
-                                    { name: 'Arthropods', parent: 'Radio_arthro', age: 0, image: 'images/fengzhengia.jpg', info:'' }, //Fengzhengia
+                            { name: 'Pambdelurion', parent: 'Antennapoda', age: 521, image: 'images/pambdelurion.png', info:'' },
+                                    { name: 'Anomalocaris', parent: 'Pambdelurion', age: 520, ageEnd: 499, image: 'images/anomalocaris.jpg', info:'info/anomalocaris.md' },
+                                    { name: 'Arthropods', parent: 'Pambdelurion', age: 0, image: 'images/fengzhengia.jpg', info:'' }, //Fengzhengia
                                         { name: 'Chelicerates', parent: 'Arthropods', age: 519, image: 'images/chelicerates.png', info:'' },
+                                            { name: 'Offacolus', parent: 'Chelicerates', age: 0, image: 'images/offacolus.png', info:'' },
+                                                { name: 'Chasmataspis', parent: 'Offacolus', age: 487, image: 'images/chasmataspis.png', info:'' },
+                                                    { name: 'Eurpyterids', parent: 'Chasmataspis', age: 480, ageEnd: 267, image: 'images/eurypterid.jpg', info:'' },
+                                                    { name: 'Arach2', parent: 'Chasmataspis', unnamed: true, age: 0, image: '', info:'' },
+                                                        { name: 'Ticks', parent: 'Arach2', age: 0, image: 'images/tick.jpg', info:'' },
+                                                        { name: 'Horseshoe crabs', parent: 'Arach2', age: 480, image: 'images/horsesehocrab.jpg', info:'' },
+
+                                        
                                         { name: 'Mandibulates', parent: 'Arthropods', age: 0, image: '', info:'' },
 
 
