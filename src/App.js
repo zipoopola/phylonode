@@ -388,6 +388,7 @@ useEffect(() => {
     }
 
     const allNodes = Object.keys(nodePositions.current).map(name => ({ name }));
+
     const fuse = new Fuse(allNodes, {
       keys: ['name'],
       threshold: 0.5,   //0 is strict, 1 is loose

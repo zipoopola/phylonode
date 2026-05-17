@@ -253,10 +253,23 @@ const flatData = [
                                                     { name: 'Eurpyterids', parent: 'Chasmataspis', age: 480, ageEnd: 267, image: 'images/eurypterid.jpg', info:'' },
                                                     { name: 'Arach2', parent: 'Chasmataspis', unnamed: true, age: 0, image: '', info:'' },
                                                         { name: 'Ticks', parent: 'Arach2', age: 0, image: 'images/tick.jpg', info:'' },
+                                                        { name: 'Arach3', parent: 'Arach2', unnamed: true, age: 0, image: '', info:'' },
                                                         { name: 'Horseshoe crabs', parent: 'Arach2', age: 480, image: 'images/horsesehocrab.jpg', info:'' },
+                                                            { name: 'Scorpion', parent: 'Arach3', age: 435, image: 'images/scorpion.png', info:'' },
+                                                            { name: 'trigonotarbid', parent: 'Arach3', age: 420, image: 'images/trigonotarbid .png', info:'' },
+                                                                { name: 'Mygalomorphae', parent: 'trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
+                                                                    { name: 'Trapdoor spiders', parent: 'Mygalomorphae', age: 0, image: 'images/trapdoor_spider.jpg', info:'' },
+                                                                    { name: 'Taruntulas', parent: 'Mygalomorphae', age: 0, image: 'images/tarantula.jpg', info:'' },
+                                                                { name: 'Araneomorphae', parent: 'trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
+                                                                //Entelegynae
+                                                                    { name: 'Jumping spiders', parent: 'Araneomorphae', age: 0, image: 'images/jumping_spider.jpg', info:'' },
+                                                                    { name: 'Black widows', parent: 'Araneomorphae', age: 0, image: 'images/black_widow.jpg', info:'' },
+                                        { name: 'Atennulata', parent: 'Arthropods', age: 0, image: 'images/bushizheia.png', info:'' },
+                                            { name: 'Mandibulates', parent: 'Atennulata', age: 0, image: '', info:'' },
+	
 
                                         
-                                        { name: 'Mandibulates', parent: 'Arthropods', age: 0, image: '', info:'' },
+                                        
 
 
 
