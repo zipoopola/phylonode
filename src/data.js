@@ -264,9 +264,13 @@ const flatData = [
                                                                 //Entelegynae
                                                                     { name: 'Jumping spiders', parent: 'Araneomorphae', age: 0, image: 'images/jumping_spider.jpg', info:'' },
                                                                     { name: 'Black widows', parent: 'Araneomorphae', age: 0, image: 'images/black_widow.jpg', info:'' },
-                                        { name: 'Atennulata', parent: 'Arthropods', age: 0, image: 'images/bushizheia.png', info:'' },
-                                            { name: 'Mandibulates', parent: 'Atennulata', age: 0, image: '', info:'' },
-	
+                                        { name: 'Atennulata', parent: 'Arthropods', age: 0, image: 'images/atennulata.jpg', info:'' },
+                                            { name: 'Mandibulates', parent: 'Atennulata', age: 0, unnamed: true, image: 'images/mandibulates.png', info:'' },
+                                                { name: 'Myriapods', parent: 'Mandibulates', age: 428, image: 'images/myriapod.jpg', info:'' }, //first animal on land?
+                                                { name: 'PanCrustacea', parent: 'Mandibulates', age: 0, image: '', info:'' },
+                                            { name: 'Trilobites', parent: 'Atennulata', age: 521, ageEnd: 252, image: 'images/trilobites.png', info:'' },
+                                            
+
 
                                         
                                         
