@@ -256,17 +256,20 @@ const flatData = [
                                                         { name: 'Arach3', parent: 'Arach2', unnamed: true, age: 0, image: '', info:'' },
                                                         { name: 'Horseshoe crabs', parent: 'Arach2', age: 480, image: 'images/horsesehocrab.jpg', info:'' },
                                                             { name: 'Scorpion', parent: 'Arach3', age: 435, image: 'images/scorpion.png', info:'' },
-                                                            { name: 'trigonotarbid', parent: 'Arach3', age: 420, image: 'images/trigonotarbid .png', info:'' },
-                                                                { name: 'Mygalomorphae', parent: 'trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
+                                                            { name: 'Trigonotarbid', parent: 'Arach3', age: 420, image: 'images/trigonotarbid .png', info:'' },
+                                                                { name: 'Mygalomorphae', parent: 'Trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
                                                                     { name: 'Trapdoor spiders', parent: 'Mygalomorphae', age: 0, image: 'images/trapdoor_spider.jpg', info:'' },
                                                                     { name: 'Taruntulas', parent: 'Mygalomorphae', age: 0, image: 'images/tarantula.jpg', info:'' },
-                                                                { name: 'Araneomorphae', parent: 'trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
+                                                                { name: 'Araneomorphae', parent: 'Trigonotarbid',unnamed: true, age: 0, image: '', info:'' },
                                                                 //Entelegynae
                                                                     { name: 'Jumping spiders', parent: 'Araneomorphae', age: 0, image: 'images/jumping_spider.jpg', info:'' },
                                                                     { name: 'Black widows', parent: 'Araneomorphae', age: 0, image: 'images/black_widow.jpg', info:'' },
                                         { name: 'Atennulata', parent: 'Arthropods', age: 0, image: 'images/atennulata.jpg', info:'' },
                                             { name: 'Mandibulates', parent: 'Atennulata', age: 0, unnamed: true, image: 'images/mandibulates.png', info:'' },
                                                 { name: 'Myriapods', parent: 'Mandibulates', age: 428, image: 'images/myriapod.jpg', info:'' }, //first animal on land?
+                                                    { name: 'Centipedes', parent: 'Myriapods', age: 428, image: 'images/centipede.jpg', info:'' },
+                                                    { name: 'Millipedes', parent: 'Myriapods', age: 428, image: 'images/millipede.jpg', info:'' },
+                                                        { name: 'Arthropleura', parent: 'Millipedes', age: 344, ageEnd: 292, image: 'images/arthropleura.jpg', info:'' },
                                                 { name: 'PanCrustacea', parent: 'Mandibulates', age: 0, image: '', info:'' },
                                             { name: 'Trilobites', parent: 'Atennulata', age: 521, ageEnd: 252, image: 'images/trilobites.png', info:'' },
                                             
