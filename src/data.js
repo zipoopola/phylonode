@@ -271,9 +271,10 @@ const flatData = [
                                                     { name: 'Millipedes', parent: 'Myriapods', age: 428, image: 'images/millipede.jpg', info:'' },
                                                         { name: 'Arthropleura', parent: 'Millipedes', age: 344, ageEnd: 292, image: 'images/arthropleura.jpg', info:'' },
                                                 { name: 'PanCrustacea', parent: 'Mandibulates', age: 518, image: 'images/stemPancrustacean.png', info:'' }, //hymenocaria step req?
-                                                    { name: 'Multicrustacea', parent: 'PanCrustacea', age: 0, image: '', info:'' },
-                                                        { name: 'Malacostraca', parent: 'Multicrustacea', age: 0, image: '', info:'' },
-                                                        { name: 'Barnacles', parent: 'Multicrustacea', age: 0, image: '', info:'' },
+                                                    { name: 'Multicrustacea', parent: 'PanCrustacea', age: 510, image: 'images/multicrustacean.png', info:'' },
+                                                        { name: 'Malacostraca', parent: 'Multicrustacea', age: 505, image: 'images/malacostraca.jpg', info:'' },
+                                                        { name: 'Barnacle_ancestor', parent: 'Multicrustacea', age: 0, image: 'images/barnacle_0.jpg', info:'' },
+                                                            { name: 'Barnacles', parent: 'Barnacle_ancestor', age: 0, image: 'images/barnacle_2.jpg', info:'' },
                                                     { name: 'Allotriocarida', parent: 'PanCrustacea', age: 0, image: '', info:'' },
                                                         { name: 'Branchiopoda', parent: 'Allotriocarida', age: 0, image: '', info:'' },
                                                         { name: 'Hexapoda', parent: 'Allotriocarida', age: 0, image: '', info:'' },
