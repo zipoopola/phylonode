@@ -14,7 +14,7 @@ const flatData = [
         { name: 'Anthozoa', parent: 'Cnidaria', age: 0, image: '', info:'' },
             { name: 'Hexacorallia', parent: 'Anthozoa', age: 0, image: '', info:'' },
                 { name: 'Sea Anenomes', parent: 'Hexacorallia', age: 0, image: '', info:'' },
-                { name: 'Stony Corals', parent: 'Hexacorallia', age: 0, image: '', info:'' },
+                { name: 'Stony Corals', parent: 'Hexacorallia', age: 0, image: 'images/stonycoral.jpg', info:'' },
             { name: 'Soft Corals', parent: 'Anthozoa', age: 0, image: 'images/sea_pen.png', info:'' },
         { name: 'Medusozoa', parent: 'Cnidaria', age: 0, image: '', info:'' },
     { name: 'Bilateria', parent: 'Symmetry',  rank:"clade I", age: 570, image: 'images/bilateria.png', info:'info/bilateria.md' },
