@@ -76,7 +76,7 @@ const flatData = [
                                                             { name: 'Bullhead sharks', parent: 'Galeomorphi', age: 193, image: 'images/bullhead.jpg', info:''},
                                                             { name: 'Orectolobiformes', parent: 'Galeomorphi', age: 179, image: '', info:''},
                                                                 { name: 'Wobbegong', parent: 'Orectolobiformes', age: 150, image: 'images/wobbegong.jpg', info:''},
-                                                                { name: 'Zebra shark', parent: 'Orectolobiformes', age: 0, image: '', info:''},
+                                                                { name: 'Zebra shark', parent: 'Orectolobiformes', age: 0, image: 'images/zebrashark.jpg', info:''},
                                                                 { name: 'Whale shark', parent: 'Orectolobiformes', age: 20, image: '', info:''},
                                                             { name: 'Lamniformes', parent: 'Galeomorphi', age: 167, image: '', info:''},
                                                                 { name: 'Catshark', parent: 'Lamniformes', age: 154, image: 'images/catshark.jpg', info:''},
