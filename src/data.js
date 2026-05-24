@@ -88,7 +88,7 @@ const flatData = [
                                                                 { name: 'Thresher shark', parent: 'Carcharhiniformes', age: 45, image: '', info:''},
                                                                 { name: 'Basking shark', parent: 'Carcharhiniformes', age: 23, image: '', info:''},
                                                                 { name: 'Megalodon', parent: 'Carcharhiniformes', age: 23, ageEnd: 4, image: '', info:''},
-                                                                { name: 'Great white shark', parent: 'Carcharhiniformes', age: 0, image: '', info:''},
+                                                                { name: 'Great white shark', parent: 'Carcharhiniformes', age: 0, image: 'images/White_shark.jpg', info:''},
                                         { name: 'Bony fishes', parent: 'CrownGnathostomata',rank:"clade III", age: 0, image: '', info:''  },
                                             { name: 'Ray-finned fishes', parent: 'Bony fishes',rank:"clade IV", age: 425, image: '', info:''  },
                                                 { name: 'Birchirs', parent: 'Ray-finned fishes', age: 100,  image: '', info:''  },
