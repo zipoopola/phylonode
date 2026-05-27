@@ -30,7 +30,7 @@ function expandAllDescendants(node) {
 }
 
 
-const renderCustomNode = (setInfoNode, onExpandAll, nodePositions) => ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
+const renderCustomNode = (setInfoNode, onExpandAll, nodePositions, panToNode) => ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
 //early retuen for unnamed nodes, lines and dot in middle. If it has an age, this is displayed instead of the dot
 if (nodeDatum.unnamed) {
   const hasAge = nodeDatum.age && nodeDatum.age !==0;
@@ -56,7 +56,7 @@ if (nodeDatum.unnamed) {
           </foreignObject>
         </>
       )}
-      {!hasAge && <circle r="4" fill="#9ca3af" />}
+      {!hasAge && <circle r="4" fill="#9ca3af" />} 
     </g>
   );
 }
@@ -66,8 +66,17 @@ if (nodeDatum.unnamed) {
 if (hierarchyPointNode) {
   nodePositions.current[nodeDatum.name] = {x: hierarchyPointNode.x, y: hierarchyPointNode.y};
 }
-  const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
-  const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
+const hasChildren = nodeDatum.children && nodeDatum.children.length > 0;
+const isCollapsed = nodeDatum.__rd3t && nodeDatum.__rd3t.collapsed;
+
+  // detect if children are very far apart and show navigation labels
+const leftChild = nodeDatum.children?.[0];
+const rightChild = nodeDatum.children?.[nodeDatum.children.length - 1];  //rightmost is final child in length of list
+const leftPos = leftChild ? nodePositions.current[leftChild.name] : null;
+const rightPos = rightChild ? nodePositions.current[rightChild.name] : null;
+const spread = leftPos && rightPos ? rightPos.x - leftPos.x : 0; //calculates spread, for use in panning and making website more visibly nice
+const SPREAD_THRESHOLD = 1000;
+const showSpreadLabels = spread > SPREAD_THRESHOLD && !isCollapsed;
 
   //if no image present change coords
 const nameY = nodeDatum.image ? -56 : -20;
@@ -111,9 +120,6 @@ const handleToggle = () => {
             fontSize: '14px',
             fontWeight: 100,
             lineHeight: '1.2em',
-            // whiteSpace: 'normal',
-            // wordWrap: 'break-word',        doesnt seem to work rn
-            // overflowWrap: 'break-word',
           }}
         >
           {nodeDatum.name}
@@ -222,6 +228,59 @@ const handleToggle = () => {
         </g>
         );
       })()}
+            {showSpreadLabels && (        //navi labels for widely distanced children
+        <>
+          <foreignObject
+            x="-150"
+            y="55"
+            width="140"
+            height="20"
+            onClick={(e) => {
+              e.stopPropagation();
+              panToNode(leftChild);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={{
+                textAlign: 'right',
+                fontSize: '11px',
+                color: '#6b7280',
+                fontWeight: 300,
+                lineHeight: '20px',
+              }}
+            >
+              ← {leftChild.name}
+            </div>
+          </foreignObject>
+
+          <foreignObject
+            x="10"
+            y="55"
+            width="140"
+            height="20"
+            onClick={(e) => {
+              e.stopPropagation();
+              panToNode(rightChild);
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={{
+                textAlign: 'left',
+                fontSize: '11px',
+                color: '#6b7280',
+                fontWeight: 300,
+                lineHeight: '20px',
+              }}
+            >
+              {rightChild.name} →
+            </div>
+          </foreignObject>
+        </>
+      )}
     </g>
   );
 };
@@ -238,11 +297,16 @@ function App() {
   const nodePositions = useRef({}); //variable to store position of searched node
   const animationRef = useRef(null); //variable to track search panning animation
   const translateRef = useRef(translate); // avoids declaring translate as a dependencey
-  const zoom= 0.35*window.innerWidth / 1200 + 0.24;  //initial zoom, 0.59 for the largest screens, or more zoomed out on smaller screens
+  const initialZoom= 0.35*window.innerWidth / 1200 + 0.24;  //initial zoom, 0.59 for the largest screens, or more zoomed out on smaller screens
+  const [currentZoom, setCurrentZoom] = useState(initialZoom);
+  const currentZoomRef = useRef(initialZoom);
 
   useEffect(() => {
   translateRef.current = translate;
   }, [translate]);       //keeps translate ref in sync
+  useEffect(() => {
+  currentZoomRef.current = currentZoom; //same for zoom
+}, [currentZoom]);
 
   //stopped scroll wheel being allowed to move page down (it can only be used for zoom)
   useEffect(() => {
@@ -259,7 +323,7 @@ useEffect(() => {
   if (!treeGroup) return;
 
   const bounds = getTreeBounds();
-  const padding = 5500;
+  const padding = 5800;
 
   const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
   defs.innerHTML = `
@@ -330,30 +394,30 @@ const getTreeBounds = () => {               //helper function for tree bounds ba
 const panToNode = useCallback((node) => {          
   const pos = nodePositions.current[node.name];
   if (pos){
-    const target = { x: window.innerWidth/2 - pos.x*zoom, y: 100 - pos.y*zoom};  //sets target relative to start
-    const duration = 1000; //ms
-    const start = performance.now(); // starts a timer NOW at 0ms
-    const from = getActualTranslate(); //records the start point
-    //cancel pan animation if another search happens - stops multiple animations from happening at once and making no sense
-    if (animationRef.current) cancelAnimationFrame(animationRef.current)
+    const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
+    if (!treeGroup) return;
 
-    function animate(now) {     //defines a fn that runs every frame
-      const elapsed = now - start; //uses the timer started above to calculate elapsed time right NOW
-      const t = Math.min(elapsed/duration,1); //t is proportion of completion of pan animation, from 0 to 1
-      const eased = t < 0.5 ? 2*t*t : -1 + (4-2*t)*t; //two parabolic curve to ensure speed is smooth at the start and end (one for t<1/2, one for t at the end)
-      setTranslate({
-        x: from.x + (target.x - from.x) * eased,  //the start location + distance that needs to be travelled 
-        y: from.y + (target.y - from.y)*eased,  // travelled distance * eased factor to make it slow at start and end (by travelling less distance)
-      });
+    // read current scale from DOM
+    const transform = treeGroup.getAttribute('transform');
+    const scaleMatch = transform?.match(/scale\(([^)]+)\)/);
+    const currentScale = scaleMatch ? parseFloat(scaleMatch[1]) : currentZoomRef.current;
 
-      if (t<1) {
-        animationRef.current = requestAnimationFrame(animate); // for time not fully elapsed, allow the animation to translate us
-      }
-    }
-    animationRef.current = requestAnimationFrame(animate); //outside of the loop set postion for t=0
+    // set currentZoom to match actual scale so react-d3-tree doesn't snap it on re-render
+    setCurrentZoom(currentScale);
+
+    const targetX = window.innerWidth/2.5 - pos.x * currentScale;
+    const targetY = 275 - pos.y * currentScale;
+
+    // add CSS transition temporarily
+    treeGroup.style.transition = 'transform 1s cubic-bezier(0.45, 0, 0.55, 1)';
+    setTranslate({ x: targetX, y: targetY });
+
+    // remove transition after animation completes so normal panning isn't sluggish
+    setTimeout(() => {
+      treeGroup.style.transition = '';
+    }, 1000);
   }
-}, [zoom]);      //pan to node fn only updated when zoom changes
-
+}, []);
 
 useEffect(() => {
   if (infoNode && infoNode.info) {
@@ -464,13 +528,13 @@ return (
           orientation="vertical"
           zoomable 
           // draggable={false} //disabling native pan cuz i will make my own with boundaries
-          zoom={zoom}  
+          zoom={currentZoom}  
           scaleExtent={{ min: 0.1, max: 4.5 }} //allowed zooms
           collapsible
           translate={translate}
           separation={{ siblings: 1, nonSiblings: 1.6 }}
           nodeSize={{ x: 200, y: 145 }}
-          renderCustomNodeElement={renderCustomNode(setInfoNode, handleExpandAll, nodePositions)}
+          renderCustomNodeElement={renderCustomNode(setInfoNode, handleExpandAll, nodePositions, panToNode)}
           
           pathFunc={(linkData) => {
           const offsetY = 55; // Adjust this if your node has a taller label or extra info
