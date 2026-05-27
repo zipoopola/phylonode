@@ -370,15 +370,6 @@ const handleExpandAll = (nodeDatum) => {
   }
 };
 
-const getActualTranslate = () => {                   //helper function so the app knows where it is not just where it has searched too
-  const treeGroup = treeContainerRef.current?.querySelector('.rd3t-g');
-  if (!treeGroup) return translateRef.current;
-  const transform = treeGroup.getAttribute('transform');
-  const match = transform?.match(/translate\(([^,]+),([^)]+)\)/);
-  if (match) return { x: parseFloat(match[1]), y: parseFloat(match[2]) };
-  return translateRef.current;
-};
-
 const getTreeBounds = () => {               //helper function for tree bounds based on maximum node positions
   const positions = Object.values(nodePositions.current);
   if (positions.length === 0) return { minX: -2000, maxX: 2000, minY: -200, maxY: 10000 };
