@@ -273,6 +273,16 @@ const flatData = [
                                                 { name: 'PanCrustacea', parent: 'Mandibulates', age: 518, image: 'images/stemPancrustacean.png', info:'' }, //hymenocaria step req?
                                                     { name: 'Multicrustacea', parent: 'PanCrustacea', age: 510, image: 'images/multicrustacean.png', info:'' },
                                                         { name: 'Malacostraca', parent: 'Multicrustacea', age: 505, image: 'images/malacostraca.jpg', info:'' },
+                                                            { name: 'Peracarida', parent: 'Malacostraca', age: 502, image: 'images/peracarida_eg.jpg', info:'' },
+                                                                { name: 'Isopods', parent: 'Peracarida', age: 496, image: 'images/waterlice.jpg', info:'' },
+                                                                    { name: 'Giant Isopods', parent: 'Isopods', age: 288, image: 'images/giant_isopod.jpg', info:'' },
+                                                                    { name: 'Woodlouse', parent: 'Isopods', age: 300, image: 'images/woodlouse.jpg', info:'' },
+                                                            { name: 'Stomatacarida', parent: 'Malacostraca', unnamed: true, age: 0, image: 'images/.jpg', info:'' },
+                                                                { name: 'Mantis Shrimp', parent: 'Stomatacarida', age: 0, image: 'images/mantis-shrimp.jpg', info:'' },
+                                                                { name: 'Syneucarida', parent: 'Stomatacarida', unnamed: true, age: 0, image: 'images/mantis-shrimp.jpg', info:'' },
+                                                                    { name: 'Krill', parent: 'Syneucarida', age: 0, image: 'images/krill.jpg', info:'' },
+                                                                    { name: 'Decapoda', parent: 'Syneucarida', age: 0, image: 'images/.jpg', info:'' },
+
                                                         { name: 'Barnacle_ancestor', parent: 'Multicrustacea', age: 0, image: 'images/barnacle_0.jpg', info:'' },
                                                             { name: 'Barnacles', parent: 'Barnacle_ancestor', age: 0, image: 'images/barnacle_2.jpg', info:'' },
                                                     { name: 'Allotriocarida', parent: 'PanCrustacea', age: 0, image: '', info:'' },
