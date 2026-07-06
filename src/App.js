@@ -29,6 +29,9 @@ function expandAllDescendants(node) {
   }
 }
 
+const dataByName = {}; //extracts all data from a node
+data.forEach(item => { dataByName[item.name] = item; });
+
 
 const renderCustomNode = (setInfoNode, onExpandAll, nodePositions, panToNode) => ({ nodeDatum, toggleNode, hierarchyPointNode }) => {
 //early retuen for unnamed nodes, lines and dot in middle. If it has an age, this is displayed instead of the dot
@@ -77,6 +80,9 @@ const rightPos = rightChild ? nodePositions.current[rightChild.name] : null;
 const spread = leftPos && rightPos ? rightPos.x - leftPos.x : 0; //calculates spread, for use in panning and making website more visibly nice
 const SPREAD_THRESHOLD = 1000;
 const showSpreadLabels = spread > SPREAD_THRESHOLD && !isCollapsed;
+const parentPos = hierarchyPointNode ? { x: hierarchyPointNode.x, y: hierarchyPointNode.y } : null;
+const leftRelX = parentPos && leftPos ? leftPos.x - parentPos.x : 0;   //relative children positions
+const rightRelX = parentPos && rightPos ? rightPos.x - parentPos.x : 0;
 
   //if no image present change coords
 const nameY = nodeDatum.image ? -56 : -20;
@@ -279,6 +285,57 @@ const handleToggle = () => {
               {rightChild.name} →
             </div>
           </foreignObject>
+
+          {/* parent back-labels, positioned above each child */}
+          <foreignObject
+            x={leftRelX + 10}
+            y="55"
+            width="140"
+            height="20"
+            onClick={(e) => {
+              e.stopPropagation();
+              panToNode(nodeDatum); // pan back to this node (the parent)
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={{
+                textAlign: 'left',
+                fontSize: '11px',
+                color: '#6b7280',
+                fontWeight: 300,
+                lineHeight: '20px',
+              }}
+            >
+              → {nodeDatum.name}
+            </div>
+          </foreignObject>
+
+          <foreignObject
+            x={rightRelX - 150}
+            y="55"
+            width="140"
+            height="20"
+            onClick={(e) => {
+              e.stopPropagation();
+              panToNode(nodeDatum); // pan back to this node (the parent)
+            }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div
+              xmlns="http://www.w3.org/1999/xhtml"
+              style={{
+                textAlign: 'right',
+                fontSize: '11px',
+                color: '#6b7280',
+                fontWeight: 300,
+                lineHeight: '20px',
+              }}
+            >
+              ← {nodeDatum.name}
+            </div>
+          </foreignObject>
         </>
       )}
     </g>
@@ -442,7 +499,11 @@ useEffect(() => {
       return null;
     }
 
-    const allNodes = Object.keys(nodePositions.current).map(name => ({ name }));
+    const allNodes = Object.keys(nodePositions.current).flatMap(name => {
+    const entry = dataByName[name];
+    const akaEntries = entry?.aka ? entry.aka.map(a => ({ name: a, realName: name })) : [];
+    return [{ name, realName: name }, ...akaEntries];
+  });
 
     const fuse = new Fuse(allNodes, {
       keys: ['name'],
@@ -451,7 +512,7 @@ useEffect(() => {
     });
 
     const results = fuse.search(searchQuery);
-    const matchedNode = results.length > 0 ? findNode(treeData[0], results[0].item.name) : null;
+    const matchedNode = results.length > 0 ? findNode(treeData[0], results[0].item.realName) : null;
 
     if (matchedNode) {
       if (!isMobile) setInfoNode(matchedNode); // opens the sidebar for the matched node only if not on mobile (too little space)
@@ -592,6 +653,11 @@ return (
 
             {/*node name, image, age are in side bar */}
             <h2 className="text-lg font-semibold mb-2">{infoNode.name}</h2>
+            {infoNode.aka && infoNode.aka.length > 0 && (         //aka names added
+              <p className="text-xs text-gray-400 mb-2 italic">
+                aka {infoNode.aka.join(', ')}
+              </p>
+            )}
 
             {infoNode.image && (
               <img

@@ -285,8 +285,12 @@ const flatData = [
 
                                                         { name: 'Barnacle_ancestor', parent: 'Multicrustacea', age: 0, image: 'images/barnacle_0.jpg', info:'' },
                                                             { name: 'Barnacles', parent: 'Barnacle_ancestor', age: 0, image: 'images/barnacle_2.jpg', info:'' },
-                                                    { name: 'Allotriocarida', parent: 'PanCrustacea', age: 0, image: '', info:'' },
-                                                        { name: 'Branchiopoda', parent: 'Allotriocarida', age: 0, image: '', info:'' },
+                                                    { name: 'Allotriocarida', parent: 'PanCrustacea', age: 497, image: 'images/allotriocarida.png', info:'' },
+                                                        { name: 'Branchiopoda', parent: 'Allotriocarida', age: 0, unnamed: true, image: '', info:'' },
+                                                            { name: 'Triops', parent: 'Branchiopoda', age: 0, image: 'images/triops.png', info:'' },
+                                                            { name: 'flea+shrimp', parent: 'Branchiopoda', unnamed: true, age: 0, image: '', info:'' },
+                                                                { name: 'Brine shrimp', aka: ['Artemia', 'Sea-Monkeys'], parent: 'flea+shrimp', age: 0, image: 'images/artemia.jpg', info:'' },
+                                                                { name: 'Water fleas', parent: 'flea+shrimp', age: 0, image: 'images/daphnia.png', info:'' },
                                                         { name: 'Hexapoda', parent: 'Allotriocarida', age: 0, image: '', info:'' },
                                                         
                                             { name: 'Trilobites', parent: 'Atennulata', age: 521, ageEnd: 252, image: 'images/trilobites.png', info:'' },
