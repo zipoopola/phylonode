@@ -246,7 +246,7 @@ const flatData = [
                             { name: 'Velvet Worms', parent: 'Antennapoda', age: 309, image: 'images/velvet_worm.png', info:'' },
                             { name: 'Pambdelurion', parent: 'Antennapoda', age: 521, image: 'images/pambdelurion.png', info:'' },
                                     { name: 'Anomalocaris', parent: 'Pambdelurion', age: 520, ageEnd: 499, image: 'images/anomalocaris.jpg', info:'info/anomalocaris.md' },
-                                    { name: 'Arthropods', parent: 'Pambdelurion', age: 0, image: 'images/fengzhengia.jpg', info:'' }, //Fengzhengia
+                                    { name: 'Arthropods', parent: 'Pambdelurion', age: 0, rank:"Phylum", image: 'images/fengzhengia.jpg', info:'' }, //Fengzhengia
                                         { name: 'Chelicerates', parent: 'Arthropods', age: 519, image: 'images/chelicerates.png', info:'' },
                                             { name: 'Offacolus', parent: 'Chelicerates', age: 0, image: 'images/offacolus.png', info:'' },
                                                 { name: 'Chasmataspis', parent: 'Offacolus', age: 487, image: 'images/chasmataspis.png', info:'' },
@@ -283,6 +283,8 @@ const flatData = [
                                                                     { name: 'Krill', parent: 'Syneucarida', age: 0, image: 'images/krill.jpg', info:'' },
                                                                     { name: 'Decapoda', parent: 'Syneucarida', age: 0, image: 'images/.jpg', info:'' },
 
+                                            { name: 'Trilobites', parent: 'Atennulata', age: 521, ageEnd: 252, image: 'images/trilobites.png', info:'' },
+
                                                         { name: 'Barnacle_ancestor', parent: 'Multicrustacea', age: 0, image: 'images/barnacle_0.jpg', info:'' },
                                                             { name: 'Barnacles', parent: 'Barnacle_ancestor', age: 0, image: 'images/barnacle_2.jpg', info:'' },
                                                     { name: 'Allotriocarida', parent: 'PanCrustacea', age: 497, image: 'images/allotriocarida.png', info:'' },
@@ -291,17 +293,18 @@ const flatData = [
                                                             { name: 'flea+shrimp', parent: 'Branchiopoda', unnamed: true, age: 0, image: '', info:'' },
                                                                 { name: 'Brine shrimp', aka: ['Artemia', 'Sea-Monkeys'], parent: 'flea+shrimp', age: 0, image: 'images/artemia.jpg', info:'' },
                                                                 { name: 'Water fleas', parent: 'flea+shrimp', age: 0, image: 'images/daphnia.png', info:'' },
-                                                        { name: 'Hexapoda', parent: 'Allotriocarida', age: 0, image: '', info:'' },
+                                                        { name: 'Hexapoda', parent: 'Allotriocarida', age: 462, image: 'images/hexapod.png', info:'info/hexapoda.md' },
+                                                            { name: 'Protura', aka: ['Coneheads'], parent: 'Hexapoda', age: 0, image: 'images/protura.png', info:'' },
+                                                            { name: 'Holomerentoma', parent: 'Hexapoda', age: 0, unnamed: true, image: '', info:'' },
+                                                                { name: 'Entognatha', parent: 'Holomerentoma', age: 0, unnamed: true, image: '', info:'' },
+                                                                    { name: 'Springtails', parent: 'Entognatha', age: 0, image: 'images/springtail.jpg', info:'' },
+                                                                    { name: 'Diplura', aka:['Two-pronged bristletails'], parent: 'Entognatha', age: 0, image: 'images/diplura.jpg', info:'' },
+                                                                { name: 'Insects', parent: 'Holomerentoma', age: 0, image: '', info:'' },
                                                         
-                                            { name: 'Trilobites', parent: 'Atennulata', age: 521, ageEnd: 252, image: 'images/trilobites.png', info:'' },
                                             
 
 
                                         
-                                        
-
-
-
                                         
             { name: 'Spiralia', parent: 'Protostomia', age: 0, image: '', info:'info/Spiralia.md' },
                 { name: 'Rotifers', parent: 'Spiralia', age: 0, image: 'images/rotifer.jpg', info:'' },
@@ -321,7 +324,7 @@ const flatData = [
                                     { name: 'Earthworms', parent: 'Annelida4', age: 0, image: 'images/earthworm.png', info:'' },
 
 
-                        { name: 'Molluscs', parent: 'Lophotrochozoa', age: 0, image: 'images/early_mollusk.png', info:'' },
+                        { name: 'Molluscs', parent: 'Lophotrochozoa', rank:"Phylum", age: 0, image: 'images/early_mollusk.png', info:'' },
                         //{ name: 'Kryptotrochozoa', parent: 'Lophotrochozoa', unnamed: true, age: 0, image: '', info:'' },
                             //{ name: 'Bryozoa', parent: 'Kryptotrochozoa', age: 0, image: '', info:'' },
                             { name: 'Brachiopoda', parent: 'Lophotrochozoa', age: 0, image: 'images/brachiopod.jpg', info:'' },

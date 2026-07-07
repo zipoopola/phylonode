@@ -2,6 +2,7 @@
 export const infoNodes = new Set([
   "ambulacraria",
   "animals",
+  "anomalocaris",
   "archelosauria",
   "arthrodira",
   "bilateria",
@@ -9,6 +10,7 @@ export const infoNodes = new Set([
   "galeomorphi",
   "hemichordata",
   "heterostraci",
+  "hexapoda",
   "lobe-finned fishes",
   "monkey",
   "panarthropoda",

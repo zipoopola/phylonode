@@ -148,7 +148,7 @@ const handleToggle = () => {
       )}
 
       {/* Age below */}
-      {nodeDatum.age && (
+      {nodeDatum.age !== 0 && (
         <foreignObject x="-60" y={ageY} width="120" height="20">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
@@ -668,7 +668,7 @@ return (
               />
             )}
 
-            {infoNode.age && (
+            {infoNode.age !==0 && (
               <p className="text-sm text-gray-600 mb-1">
                 Age: {infoNode.ageEnd? `${infoNode.age}-${infoNode.ageEnd} MYA` : `${infoNode.age} MYA`} 
               </p>
