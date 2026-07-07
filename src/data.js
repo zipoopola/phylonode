@@ -275,7 +275,7 @@ const flatData = [
                                                         { name: 'Malacostraca', parent: 'Multicrustacea', age: 505, image: 'images/malacostraca.jpg', info:'' },
                                                             { name: 'Peracarida', parent: 'Malacostraca', age: 502, image: 'images/peracarida_eg.jpg', info:'' },
                                                                 { name: 'Isopods', parent: 'Peracarida', age: 496, image: 'images/waterlice.jpg', info:'' },
-                                                                    { name: 'Giant Isopods', parent: 'Isopods', age: 288, image: 'images/giant_isopod.jpg', info:'' },
+                                                                    { name: 'Giant Isopods', parent: 'Isopods', age: 288, image: 'images/giant_isopod2.jpg', info:'' },
                                                                     { name: 'Woodlouse', parent: 'Isopods', age: 300, image: 'images/woodlouse.jpg', info:'' },
                                                             { name: 'Stomatacarida', parent: 'Malacostraca', unnamed: true, age: 0, image: 'images/.jpg', info:'' },
                                                                 { name: 'Mantis Shrimp', parent: 'Stomatacarida', age: 0, image: 'images/mantis-shrimp.jpg', info:'' },
