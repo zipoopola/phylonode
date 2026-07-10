@@ -300,6 +300,29 @@ const flatData = [
                                                                     { name: 'Springtails', parent: 'Entognatha', age: 0, image: 'images/springtail.jpg', info:'' },
                                                                     { name: 'Diplura', aka:['Two-pronged bristletails'], parent: 'Entognatha', age: 0, image: 'images/diplura.jpg', info:'' },
                                                                 { name: 'Insects', parent: 'Holomerentoma', age: 0, image: '', info:'' },
+                                                                    { name: 'Bristletails', parent: 'Insects', age: 420, image: 'images/bristletail.jpg', info:'' },
+                                                                    { name: 'dicondylia', parent: 'Insects', age: 0,  unnamed: true, image: '', info:'' },
+                                                                        { name: 'Silverfish', parent: 'dicondylia', age: 0, image: 'images/silverfish.jpg', info:'' },
+                                                                        { name: 'Pterygota', parent: 'dicondylia', age: 326, image: 'images/pterygota.jpg', info:'' },
+                                                                            { name: 'Neoptera', parent: 'Pterygota', age: 0, image: '', info:'' },
+                                                                                { name: 'Polyneoptera', parent: 'Neoptera', age: 0, image: '', info:'' },
+                                                                                    { name: 'Angel insects', parent: 'Polyneoptera', age: 0, image: 'images/angel insect 3.jpg', info:'' },
+                                                                                    { name: 'porthrodermo', parent: 'Polyneoptera', age: 0, unnamed: true, image: '', info:'' },
+                                                                                        { name: 'portho', parent: 'porthrodermo', age: 0, unnamed: true, image: '', info:'' },
+                                                                                            { name: 'Orthoptera', parent: 'portho', age: 0, image: '', info:'' },
+                                                                                            { name: 'pdictymecy', parent: 'portho', age: 0, unnamed: true, image: '', info:'' },
+                                                                                                { name: 'Dictyoptera', parent: 'pdictymecy', age: 318, unnamed: true, image: '', info:'' },
+                                                                                                { name: 'Mecynoptera', parent: 'pdictymecy', age: 0, unnamed: true, image: '', info:'' },
+
+                                                                                        { name: 'Dermoplectopterida', parent: 'porthrodermo', age: 0, unnamed: true, image: '', info:'' },
+                                                                                            { name: 'Earwigs', parent: 'Dermoplectopterida', age: 0, image: 'images/earwig2.png', info:'' },
+                                                                                            { name: 'Stoneflies', parent: 'Dermoplectopterida', age: 0, image: '', info:'' },
+
+                                                                            { name: 'Paleoptera', parent: 'Pterygota', age: 325, image: '', info:'' },
+                                                                                { name: 'Odonata', parent: 'Paleoptera', age: 325, image: '', info:'' },
+                                                                                    { name: 'Dragonflies', parent: 'Odonata', age: 184, image: 'images/dragonfly.jpg', info:'' },
+                                                                                    { name: 'Damselflies', parent: 'Odonata', age: 152, image: 'images/damselfly.jpg', info:'' },
+                                                                                { name: 'Mayflies', parent: 'Paleoptera', age: 0, image: 'images/mayflies.jpg', info:'' },
                                                         
                                             
 
