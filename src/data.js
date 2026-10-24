@@ -223,6 +223,8 @@ const flatData = [
                                                                             { name: 'Other Reptiles', parent: 'Eureptilia', age: 314, ageEnd: 247, image: '', info:''  }, //left as a note (top age can be anywehre from 307 to 314 check it fits within parents)
                                                                             { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
                                                                                 { name: 'Lepidosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 252, image: '', info:''  }, //check age
+                                                                                    { name: 'Tuatara', parent: 'Lepidosauria', age: 0, image: 'images/tuatara.jpg', info:''  }, //check age
+                                                                                
                                                                                 { name: 'Archelosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 269, image: '', info:'info/archelosauria.md'},
                                                                                     { name: 'Pantestudines', parent: 'Archelosauria', age: 0, image: '', info:''},
                                                                                     { name: 'Archosauromorpha', parent: 'Archelosauria', age: 267, image: '', info:''},
@@ -309,14 +311,14 @@ const flatData = [
                                                                                     { name: 'Angel insects', parent: 'Polyneoptera', age: 0, image: 'images/angel insect 3.jpg', info:'' },
                                                                                     { name: 'porthrodermo', parent: 'Polyneoptera', age: 0, unnamed: true, image: '', info:'' },
                                                                                         { name: 'portho', parent: 'porthrodermo', age: 0, unnamed: true, image: '', info:'' },
-                                                                                            { name: 'Orthoptera', parent: 'portho', age: 0, image: '', info:'' },
+                                                                                            { name: 'Orthoptera', aka:['Grasshoppers & Crickets'], parent: 'portho', age: 0, image: 'images/grasshopper.jpg', info:'' },
                                                                                             { name: 'pdictymecy', parent: 'portho', age: 0, unnamed: true, image: '', info:'' },
-                                                                                                { name: 'Dictyoptera', parent: 'pdictymecy', age: 318, unnamed: true, image: '', info:'' },
+                                                                                                { name: 'Dictyoptera', parent: 'pdictymecy', age: 318, image: 'images/basalmantis.jpg', info:'' },
                                                                                                 { name: 'Mecynoptera', parent: 'pdictymecy', age: 0, unnamed: true, image: '', info:'' },
 
                                                                                         { name: 'Dermoplectopterida', parent: 'porthrodermo', age: 0, unnamed: true, image: '', info:'' },
                                                                                             { name: 'Earwigs', parent: 'Dermoplectopterida', age: 0, image: 'images/earwig2.png', info:'' },
-                                                                                            { name: 'Stoneflies', parent: 'Dermoplectopterida', age: 0, image: '', info:'' },
+                                                                                            { name: 'Stoneflies', parent: 'Dermoplectopterida', age: 0, image: 'images/stonefly.jpg', info:'' },
 
                                                                             { name: 'Paleoptera', parent: 'Pterygota', age: 325, image: '', info:'' },
                                                                                 { name: 'Odonata', parent: 'Paleoptera', age: 325, image: '', info:'' },
