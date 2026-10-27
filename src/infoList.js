@@ -6,6 +6,7 @@ export const infoNodes = new Set([
   "archelosauria",
   "arthrodira",
   "bilateria",
+  "dolichosauridae",
   "echinodermata",
   "galeomorphi",
   "hemichordata",

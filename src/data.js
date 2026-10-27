@@ -222,8 +222,30 @@ const flatData = [
                                                                         { name: 'Eureptilia', parent: 'Sauropsida', age: 0, image: '', info:''  },
                                                                             { name: 'Other Reptiles', parent: 'Eureptilia', age: 314, ageEnd: 247, image: '', info:''  }, //left as a note (top age can be anywehre from 307 to 314 check it fits within parents)
                                                                             { name: 'Crown Reptiles', parent: 'Eureptilia', age: 0, image: '', info:''  },
-                                                                                { name: 'Lepidosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 252, image: '', info:''  }, //check age
-                                                                                    { name: 'Tuatara', parent: 'Lepidosauria', age: 0, image: 'images/tuatara.jpg', info:''  }, //check age
+                                                                                { name: 'Lepidosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 252, image: 'images/lepidosaur1.jpg', info:''  }, //check age
+                                                                                    { name: 'Tuatara', parent: 'Lepidosauria', age: 0, image: 'images/tuatara.jpg', info:''  },
+                                                                                    { name: 'Squamata', parent: 'Lepidosauria', age: 0, image:'images/.jpg', info:''  },
+                                                                                        { name: 'Dibamidae', parent: 'Squamata', age: 0, image:'images/.jpg', info:''  },
+                                                                                        { name: 'Bifurcata', parent: 'Squamata', age: 0,unnamed: true, image:'', info:''  },
+                                                                                            { name: 'Geckos', parent: 'Bifurcata', age: 0, image:'images/.jpg', info:''  },
+                                                                                            { name: 'Unidentata', parent: 'Bifurcata', age: 0,unnamed: true, image:'', info:''  },
+                                                                                                { name: 'Scinciformata', parent: 'Unidentata', age: 0, image:'images/.jpg', info:''  },
+                                                                                                { name: 'Episquamata', parent: 'Unidentata', age: 0,unnamed: true, image:'', info:''  },
+                                                                                                    { name: 'Toxicofera', parent: 'Episquamata', age: 0, image:'images/.jpg', info:''  },
+                                                                                                        { name: 'Snakes', parent: 'Toxicofera', age: 0, image:'images/.jpg', info:''  },
+                                                                                                        { name: 'Toxico_child', parent: 'Toxicofera', age: 0,unnamed: true, image:'', info:''  },
+                                                                                                            { name: 'Iguania', parent: 'Toxico_child', age: 0, image:'images/.jpg', info:''  },
+                                                                                                            { name: 'Anguimorpha', parent: 'Toxico_child', age: 0, image:'images/.jpg', info:''  },
+                                                                                                                { name: 'Neoanguimorpha', parent: 'Anguimorpha', age: 0, image:'images/.jpg', info:''  },
+                                                                                                                { name: 'Paleoanguimorpha', parent: 'Anguimorpha', age: 0, image:'images/.jpg', info:''  },
+                                                                                                                    { name: 'Varanoidea', parent: 'Paleoanguimorpha', age: 0, image:'images/.jpg', info:''  },
+                                                                                                                    { name: 'Mosasaurs', parent: 'Paleoanguimorpha', age: 0, image:'images/.jpg', info:''  },
+                                                                                                                        { name: 'Dolichosauridae', parent: 'Mosasaurs', age: 0, image:'images/dolichosauridae.png', info:'info/dolichosauridae.md'  },
+                                                                                                                        { name: 'Other_Mosasauria', parent: 'Mosasaurs', age: 0, image:'images/.jpg', info:''  },
+                                                                                                    { name: 'Laterata', parent: 'Episquamata', age: 0, image:'images/.jpg', info:''  },
+                                                                                                
+
+                                                                                
                                                                                 
                                                                                 { name: 'Archelosauria', parent: 'Crown Reptiles',rank:"clade VIII", age: 269, image: '', info:'info/archelosauria.md'},
                                                                                     { name: 'Pantestudines', parent: 'Archelosauria', age: 0, image: '', info:''},
