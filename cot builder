@@ -1,0 +1,75 @@
+import math
+import socket, time
+from datetime import datetime, timedelta, timezone
+
+def cot_time(dt):
+    return dt.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+
+def times(stale_s):
+    now = datetime.now(timezone.utc)
+    return cot_time(now), cot_time(now + timedelta(seconds=stale_s))
+
+def make_marker(uid, callsign, lat, lon, stale_s=60):
+    now, stale = times(stale_s)
+    return f'''<event version="2.0" uid="{uid}" type="a-f-G-U-C" how="m-g" time="{now}" start="{now}" stale="{stale}">
+  <point lat="{lat}" lon="{lon}" hae="0" ce="10" le="10"/>
+  <detail><contact callsign="{callsign}"/></detail>
+</event>'''
+
+def make_lob(uid, callsign, lat, lon, range_m, bearing_deg, stale_s=30):
+    now, stale = times(stale_s)
+    return f'''<event version="2.0" uid="{uid}" type="u-rb-a" how="m-g" time="{now}" start="{now}" stale="{stale}">
+  <point lat="{lat}" lon="{lon}" hae="9999999" ce="9999999" le="9999999"/>
+  <detail>
+    <contact callsign="{callsign}"/>
+    <range value="{range_m}"/>
+    <bearing value="{bearing_deg}"/>
+    <inclination value="0"/>
+    <northRef value="0"/>
+    <strokeColor value="-65536"/>
+    <strokeWeight value="3.0"/>
+  </detail>
+</event>'''
+
+def dest(lat, lon, brg, dist_m):
+    """Point dist_m metres from (lat, lon) along bearing brg (degrees from north)."""
+    p1, l1 = math.radians(lat), math.radians(lon)
+    t, d = math.radians(brg), dist_m / 6371000.0
+    p2 = math.asin(math.sin(p1)*math.cos(d) + math.cos(p1)*math.sin(d)*math.cos(t))
+    l2 = l1 + math.atan2(math.sin(t)*math.sin(d)*math.cos(p1),
+                         math.cos(d) - math.sin(p1)*math.sin(p2))
+    return math.degrees(p2), math.degrees(l2)
+
+def make_cone(uid, callsign, lat, lon, range_m, bearing_deg, half_angle_deg,
+              stale_s=30, arc_steps=10):
+    now, stale = times(stale_s)
+    pts = [(lat, lon)]
+    for i in range(arc_steps + 1):
+        b = bearing_deg - half_angle_deg + i * (2 * half_angle_deg / arc_steps)
+        pts.append(dest(lat, lon, b % 360, range_m))
+    pts.append((lat, lon))  # repeat first point to close the shape
+    links = "\n    ".join(f'<link point="{la:.7f},{lo:.7f},0"/>' for la, lo in pts)
+    return f'''<event version="2.0" uid="{uid}" type="u-d-f" how="m-g" time="{now}" start="{now}" stale="{stale}">
+  <point lat="{lat}" lon="{lon}" hae="0" ce="9999999" le="9999999"/>
+  <detail>
+    {links}
+    <contact callsign="{callsign}"/>
+    <strokeColor value="-65536"/>
+    <strokeWeight value="2.0"/>
+    <fillColor value="1090453504"/>
+    <labels_on value="false"/>
+  </detail>
+</event>'''
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+ADDR = ("127.0.0.1", 4242)
+lat, lon = 51.5007, -0.1246
+bearing = 0
+
+while True:
+    sock.sendto(make_marker("DUMMY-LOC-01", "DUMMY-01", lat, lon).encode("utf-8"), ADDR)
+    sock.sendto(make_lob("DUMMY-LOC-01-LOB", "DUMMY-01 LoB", lat, lon, 300, bearing).encode("utf-8"), ADDR)
+    sock.sendto(make_cone("DUMMY-LOC-01-CONE", "DUMMY-01 uncertainty", lat, lon, 300, bearing, 15).encode("utf-8"), ADDR)
+    print("sent, bearing", bearing)
+    bearing = (bearing + 5) % 360
+    time.sleep(2)
