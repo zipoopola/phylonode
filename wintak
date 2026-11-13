@@ -1,0 +1,68 @@
+import socket, struct, time
+
+# Use the same import line as bridge.py
+from sapient_msg.bsi_flex_335_v2_0.sapient_message_pb2 import SapientMessage
+
+BRIDGE = ("127.0.0.1", 5000)
+NODE_ID = "b902eb31-97f1-4acf-b994-da3ec901074e"
+
+def set_enum(msg, field, name):
+    """Set an enum field by name, matching the end of the generated enum name."""
+    enum = msg.DESCRIPTOR.fields_by_name[field].enum_type
+    for v in enum.values:
+        if v.name == name or v.name.endswith("_" + name):
+            setattr(msg, field, v.number)
+            return
+    raise ValueError(f"'{name}' not found for {field}; options: {[v.name for v in enum.values]}")
+
+def make_status():
+    msg = SapientMessage()
+    msg.timestamp.GetCurrentTime()
+    msg.node_id = NODE_ID
+    sr = msg.status_report
+    sr.report_id = "01GGYFBAV4EEPB1398MKQ47E6E"
+    set_enum(sr, "system", "OK")
+    sr.mode = "default"
+    set_enum(sr.power, "source", "MAINS")
+    set_enum(sr.power, "status", "OK")
+    sr.power.level = 100
+    sr.node_location.x = 51.1739726374     # latitude
+    sr.node_location.y = -1.82237671048    # longitude
+    sr.node_location.z = 788.0
+    set_enum(sr.node_location, "coordinate_system", "LAT_LNG_DEG_M")
+    set_enum(sr.node_location, "datum", "WGS84_E")
+    return msg
+
+def make_detection(n, azimuth_deg):
+    msg = SapientMessage()
+    msg.timestamp.GetCurrentTime()
+    msg.node_id = NODE_ID
+    dr = msg.detection_report
+    dr.report_id = f"DET-{n:04d}"
+    dr.object_id = "OBJ-0001"
+    rb = dr.range_bearing
+    set_enum(rb, "coordinate_system", "DEGREES_M")
+    set_enum(rb, "datum", "TRUE")
+    rb.azimuth = azimuth_deg
+    rb.azimuth_error = 15.0
+    return msg
+
+def send(sock, msg):
+    payload = msg.SerializeToString()
+    sock.sendall(struct.pack("<I", len(payload)) + payload)
+
+sock = socket.create_connection(BRIDGE)
+print("connected to bridge")
+n, az = 0, 0.0
+try:
+    while True:
+        send(sock, make_status())
+        send(sock, make_detection(n, az))
+        print(f"sent status + detection, azimuth {az}")
+        n += 1
+        az = (az + 5) % 360
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("stopped")
+finally:
+    sock.close()
